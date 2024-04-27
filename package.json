@@ -1,9 +1,0 @@
-{
-  "name": "Serveur",
-  "version": "1.0.0",
-  "main": "script.js",
-  "license": "MIT",
-  "dependencies": {
-    "konva": "^9.3.6"
-  }
-}
