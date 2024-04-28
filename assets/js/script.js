@@ -1,7 +1,7 @@
 var width = window.innerWidth;
 var height = window.innerHeight;
+var serverList = [];
 
-var container = document.getElementById('container')
 
 var stage = new Konva.Stage({
     container: 'container',
@@ -84,22 +84,29 @@ function updateObjects() {
     });
 }
 
-container.addEventListener('click', function (e) {
-    // Calculate the position of the click relative to the canvas
-    var rect = container.getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
 
-    // Draw a red circle at the click position
-    var circle = new Konva.Circle({
-        id: 'aaa',
-        fill: 'red',
-        radius: 50,
-        draggable: true,
-    })
-    layer.add(circle)
-    circle.x(x);
-    circle.y(y);
+        var newServerForm = document.getElementById("newServerForm");
+
+        if (newServerForm.style.display !== 'none') {
+            newServerForm.style.display = 'none';
+            containerResult.style.display = 'flex';
+        } else {
+            newServerForm.style.display = 'flex';
+        }
+
+        // var circle = new Konva.Circle({
+        //     id: 'aaa',
+        //     fill: 'red',
+        //     radius: 50,
+        //     draggable: true,
+
+        // })
+        // layer.add(circle)
+        // circle.x(100);
+        // circle.y(100);
+    }
 });
 
 // generate nodes for the app
@@ -133,3 +140,31 @@ targets.forEach((target) => {
 });
 
 updateObjects();
+
+
+var urlList = []
+document.getElementById("addURLButton").addEventListener("click", e => {
+    var url = document.getElementById("addURL").value;
+    if (url.length > 0) {
+        var li = document.createElement('li');
+        li.textContent = url;
+        document.getElementById('urlList').appendChild(li);
+        document.getElementById('addURL').value = '';
+    }
+    urlList.push(url);
+})
+
+document.getElementById("newServerForm").addEventListener("submit", e => {
+    e.preventDefault();
+    var name = document.getElementById("name").value;
+    if (name.length > 0 && urlList.length > 0) {
+        serverList.push({
+            name: name,
+            urlList: [...urlList]
+        });
+        urlList.length = 0;
+        document.getElementById('name').value = '';
+        document.getElementById('urlList').textContent = '';
+        document.getElementById('result').textContent = JSON.stringify(serverList);
+    }
+})
