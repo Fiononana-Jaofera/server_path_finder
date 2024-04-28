@@ -1,5 +1,6 @@
 var serverList = [];
 
+// event which handle Enter keyboard press
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
         document.getElementById('name').value = '';
@@ -15,6 +16,7 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+// Event which handle Add URL button click
 var urlList = []
 document.getElementById("addURLButton").addEventListener("click", e => {
     var url = document.getElementById("addURL").value;
@@ -34,6 +36,7 @@ document.getElementById("addURLButton").addEventListener("click", e => {
     }
 });
 
+// Event handle form submit
 document.getElementById("newServerForm").addEventListener("submit", e => {
     e.preventDefault();
     var name = document.getElementById("name").value;
@@ -49,16 +52,25 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
         server.display();
     }
     else if (name.length > 0) {
-        if (neighboursList.length > 0) {
+
+        if (neighboursList.length > 0) { // handle save neighbours
             serverList.forEach(s => {
+                // update neighbours of node clicked
                 if (s.name == name) {
                     neighboursList.forEach(neighbour => {
                         s.setNeighbours({
-                            from: s.name,
+                            from: name,
                             to: neighbour
                         });
                     });
-                };
+                }
+                // update neighbours nodes
+                else if (neighboursList.includes(s.name)) {
+                    s.setNeighbours({
+                        from: s.name,
+                        to: name
+                    });
+                }
             });
         }
         // update the dom
@@ -66,6 +78,7 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
         document.getElementById('urlList').textContent = '';
         document.getElementById("newServerForm").style.display = 'none';
         neighboursList.length = 0;
+        console.log(serverList);
     }
 });
 

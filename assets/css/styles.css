@@ -60,19 +60,19 @@ body {
 }
 
 /* URL List Styling */
-#newServerForm #urlList {
+#newServerForm #urlList, #newServerForm #neighboursList {
     list-style-type: none;
     padding: 0;
     margin-bottom: 20px;
 }
 
-#newServerForm #urlList li {
+#newServerForm #urlList li, #newServerForm #neighboursList li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
 }
 
-#newServerForm #urlList li:last-child {
+#newServerForm #urlList li:last-child, #newServerForm #neighboursList li:last-child {
     border-bottom: none;
 }
 

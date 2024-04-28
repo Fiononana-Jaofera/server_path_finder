@@ -8,7 +8,8 @@ class Server {
         this.neighbours = [];
     }
 
-    display() {
+    display() 
+    {
         var group = this.group
 
         var text = new Konva.Text({
