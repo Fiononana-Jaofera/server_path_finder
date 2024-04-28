@@ -5,6 +5,7 @@ class Server {
         this.group = new Konva.Group({
             draggable: true,
         })
+        this.neighbours = [];
     }
 
     display() {
@@ -37,5 +38,9 @@ class Server {
 
         layer.add(group)
         this.group = group
+    }
+
+    setNeighbours(neighbour) {
+        this.neighbours.push(neighbour);
     }
 }

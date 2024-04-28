@@ -121,12 +121,15 @@ layer.on('click', function (e) {
     var server = serverList.filter(s => s.group._id == element.parent._id)[0]
 
     document.getElementById('urlList').textContent = '';
-    document.getElementById('listNeighbours').textContent = '';
+    document.getElementById('neighboursOption').textContent = '';
     document.getElementById('addURL').value = '';
+    document.getElementById('neighboursList').textContent = '';
     document.getElementById("newServerForm").style.display = 'block';
     document.getElementById("name").value = server.name;
-    document.getElementById('listNeighbours').style.display = 'block';
+    document.getElementById('neighboursOption').style.display = 'block';
     document.getElementById('selectNeighbours').style.display = 'block';
+    document.getElementById('neighboursList').style.display = 'block';
+    document.getElementById("name").readOnly = true;
     
     server.urlList.forEach(url => {
         var li = document.createElement('li');
@@ -137,7 +140,12 @@ layer.on('click', function (e) {
         var option = document.createElement('option');
         option.textContent = s.name;
         if (s.name != server.name) {
-            document.getElementById('listNeighbours').appendChild(option);
+            document.getElementById('neighboursOption').appendChild(option);
         }
     });
+    server.neighbours.forEach(n => {
+        var li = document.createElement('li');
+        li.textContent = n.to;
+        document.getElementById('neighboursList').appendChild(li);
+    })
 });
