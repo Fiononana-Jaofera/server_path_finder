@@ -1,18 +1,79 @@
+* {
+    box-sizing: border-box;
+ }
 body {
     position: relative;
 }
+
 #newServerForm {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
     display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 10px;
-    align-items: stretch;
-    width: 30%;
-    padding:  40px;
-    border-radius: 10px;
-    background-color: aqua;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styling */
+#newServerForm h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Input Fields Styling */
+#newServerForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Button Styling */
+#newServerForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#newServerForm button:hover {
+    background-color: #0056b3;
+}
+
+/* URL List Styling */
+#newServerForm #urlList {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#newServerForm #urlList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+#newServerForm #urlList li:last-child {
+    border-bottom: none;
+}
+
+/* Remove Inline Styles */
+#newServerForm span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
 }

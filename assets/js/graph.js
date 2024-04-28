@@ -1,7 +1,5 @@
 var width = window.innerWidth;
 var height = window.innerHeight;
-var serverList = [];
-
 
 var stage = new Konva.Stage({
     container: 'container',
@@ -84,31 +82,6 @@ function updateObjects() {
     });
 }
 
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-
-        var newServerForm = document.getElementById("newServerForm");
-
-        if (newServerForm.style.display !== 'none') {
-            newServerForm.style.display = 'none';
-            containerResult.style.display = 'flex';
-        } else {
-            newServerForm.style.display = 'flex';
-        }
-
-        // var circle = new Konva.Circle({
-        //     id: 'aaa',
-        //     fill: 'red',
-        //     radius: 50,
-        //     draggable: true,
-
-        // })
-        // layer.add(circle)
-        // circle.x(100);
-        // circle.y(100);
-    }
-});
-
 // generate nodes for the app
 connectors.forEach((connect) => {
     var line = new Konva.Arrow({
@@ -140,31 +113,3 @@ targets.forEach((target) => {
 });
 
 updateObjects();
-
-
-var urlList = []
-document.getElementById("addURLButton").addEventListener("click", e => {
-    var url = document.getElementById("addURL").value;
-    if (url.length > 0) {
-        var li = document.createElement('li');
-        li.textContent = url;
-        document.getElementById('urlList').appendChild(li);
-        document.getElementById('addURL').value = '';
-    }
-    urlList.push(url);
-})
-
-document.getElementById("newServerForm").addEventListener("submit", e => {
-    e.preventDefault();
-    var name = document.getElementById("name").value;
-    if (name.length > 0 && urlList.length > 0) {
-        serverList.push({
-            name: name,
-            urlList: [...urlList]
-        });
-        urlList.length = 0;
-        document.getElementById('name').value = '';
-        document.getElementById('urlList').textContent = '';
-        document.getElementById('result').textContent = JSON.stringify(serverList);
-    }
-})

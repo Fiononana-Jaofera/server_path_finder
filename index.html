@@ -14,10 +14,8 @@
     <form id="newServerForm">
         <h2 style="text-align: center;">New Server</h2>
         <input type="text" id="name" placeholder="Enter name...">
-        <div style="display: flex; flex-direction: column;">
-            <input type="text" id="addURL" placeholder="Enter URL...">
-            <button type="button" id="addURLButton">Add URL</button>
-        </div>
+        <input type="url" id="addURL" placeholder="Enter URL...">
+        <button type="button" id="addURLButton">Add URL</button>
         <span style="font-weight: bold;">URL list</span>
         <ul id="urlList"></ul>
         <button type="submit">Save</button>
@@ -25,7 +23,8 @@
 
     <div id="result"></div>
     <script src="modules/konva.js"></script>
-    <script type="module" src="assets/js/script.js"></script>
+    <script src="assets/js/graph.js"></script>
+    <script src="assets/js/form.js"></script>
 </body>
 
 </html>
