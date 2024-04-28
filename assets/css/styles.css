@@ -28,7 +28,7 @@ body {
 }
 
 /* Input Fields Styling */
-#newServerForm input {
+#newServerForm input, #newServerForm select {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -37,10 +37,15 @@ body {
     font-size: 16px;
 }
 
+#newServerForm select, #newServerForm #selectNeighbours {
+    display: none;
+}
+
 /* Button Styling */
 #newServerForm button {
     width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
     background-color: #007bff;
     color: #fff;
     border: none;

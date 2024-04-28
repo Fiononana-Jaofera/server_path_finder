@@ -113,3 +113,31 @@ targets.forEach((target) => {
 });
 
 updateObjects();
+
+
+layer.on('click', function (e) {
+    // get the element that was clicked on
+    var element = e.target;
+    var server = serverList.filter(s => s.group._id == element.parent._id)[0]
+
+    document.getElementById('urlList').textContent = '';
+    document.getElementById('listNeighbours').textContent = '';
+    document.getElementById('addURL').value = '';
+    document.getElementById("newServerForm").style.display = 'block';
+    document.getElementById("name").value = server.name;
+    document.getElementById('listNeighbours').style.display = 'block';
+    document.getElementById('selectNeighbours').style.display = 'block';
+    
+    server.urlList.forEach(url => {
+        var li = document.createElement('li');
+        li.textContent = url;
+        document.getElementById('urlList').appendChild(li);
+    });
+    serverList.forEach(s => {
+        var option = document.createElement('option');
+        option.textContent = s.name;
+        if (s.name != server.name) {
+            document.getElementById('listNeighbours').appendChild(option);
+        }
+    });
+});
