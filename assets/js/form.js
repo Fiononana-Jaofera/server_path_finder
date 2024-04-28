@@ -18,19 +18,26 @@ document.addEventListener('keydown', function (e) {
 var urlList = []
 document.getElementById("addURLButton").addEventListener("click", e => {
     var url = document.getElementById("addURL").value;
-    if (url.length > 0) {
+    var name = document.getElementById("name").value;
+    if (name.length > 0) {
+        var server = serverList.find(s => s.name == name);
+        if (server) {
+            urlList = server.getUrlList();
+        }
+    }
+    if (url.length > 0 && !urlList.includes(url)) {
         var li = document.createElement('li');
         li.textContent = url;
         document.getElementById('urlList').appendChild(li);
         document.getElementById('addURL').value = '';
+        urlList.push(url);
     }
-    urlList.push(url);
 });
 
 document.getElementById("newServerForm").addEventListener("submit", e => {
     e.preventDefault();
     var name = document.getElementById("name").value;
-    if (name.length > 0 && urlList.length > 0) {
+    if (name.length > 0 && urlList.length > 0 && !serverList.some(s => s.name == name)) {
         var server = new Server(name, urlList);
         serverList.push(server);
         urlList.length = 0;
@@ -41,18 +48,19 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
         document.getElementById("newServerForm").style.display = 'none';
         server.display();
     }
-    else if (name.length > 0 && neighboursList.length > 0) {
-        serverList.forEach(s => {
-
-            if (s.name == name) {
-                neighboursList.forEach(neighbour => {
-                    s.setNeighbours({
-                        from: s.name,
-                        to: neighbour
+    else if (name.length > 0) {
+        if (neighboursList.length > 0) {
+            serverList.forEach(s => {
+                if (s.name == name) {
+                    neighboursList.forEach(neighbour => {
+                        s.setNeighbours({
+                            from: s.name,
+                            to: neighbour
+                        });
                     });
-                });
-            };
-        });
+                };
+            });
+        }
         // update the dom
         document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';
@@ -61,15 +69,17 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
     }
 });
 
-
 var neighboursList = []
 document.getElementById('selectNeighbours').addEventListener("click", e => {
     var neighbour = document.getElementById('neighboursOption').value;
-    if (neighbour.length > 0) {
+    var name = document.getElementById('name').value;
+    var server = serverList.find(s => s.name == name)
+
+    if (neighbour.length > 0 && !neighboursList.includes(neighbour) && !server.getNeighbours().some(n => n.to == neighbour)) {
         var li = document.createElement('li');
         li.textContent = neighbour;
         document.getElementById('neighboursList').appendChild(li);
         document.getElementById('selectNeighbours').value = '';
+        neighboursList.push(neighbour);
     }
-    neighboursList.push(neighbour);
 });

@@ -12,7 +12,7 @@ class Server {
         var group = this.group
 
         var text = new Konva.Text({
-            x: width/2 - 10,
+            x: width/2 - 12,
             y: height/2 + 90,
             text: this.name,
             fontSize: 18,
@@ -36,11 +36,22 @@ class Server {
             image.cache();
         });
 
-        layer.add(group)
-        this.group = group
+        layer.add(group);
+        this.group = group;
     }
 
-    setNeighbours(neighbour) {
+    setNeighbours(neighbour) 
+    {
         this.neighbours.push(neighbour);
+    }
+
+    getUrlList() 
+    {
+        return this.urlList;
+    }
+
+    getNeighbours() 
+    {
+        return this.neighbours;
     }
 }

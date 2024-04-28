@@ -130,12 +130,13 @@ layer.on('click', function (e) {
     document.getElementById('selectNeighbours').style.display = 'block';
     document.getElementById('neighboursList').style.display = 'block';
     document.getElementById("name").readOnly = true;
-    
+
     server.urlList.forEach(url => {
         var li = document.createElement('li');
         li.textContent = url;
         document.getElementById('urlList').appendChild(li);
     });
+
     serverList.forEach(s => {
         var option = document.createElement('option');
         option.textContent = s.name;
@@ -143,6 +144,7 @@ layer.on('click', function (e) {
             document.getElementById('neighboursOption').appendChild(option);
         }
     });
+    
     server.neighbours.forEach(n => {
         var li = document.createElement('li');
         li.textContent = n.to;
