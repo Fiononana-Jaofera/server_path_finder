@@ -23,13 +23,16 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
     e.preventDefault();
     var name = document.getElementById("name").value;
     if (name.length > 0 && urlList.length > 0) {
-        serverList.push({
-            name: name,
-            urlList: [...urlList]
-        });
+        var server = new Server(name, urlList);
+        serverList.push(server);
         urlList.length = 0;
+
+        // update the dom
         document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';
         document.getElementById('result').textContent = JSON.stringify(serverList);
+        document.getElementById("newServerForm").style.display = 'none';
+
+        server.display();
     }
 })
