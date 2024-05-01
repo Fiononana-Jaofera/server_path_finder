@@ -11,7 +11,7 @@
 <body>
     <div id="container">
     </div>
-    <form id="newServerForm">
+    <form id="newServerForm" style="display: none;">
         <h2 style="text-align: center;">Server</h2>
         <input type="text" id="name" placeholder="Enter name...">
         <input type="url" id="addURL" placeholder="Enter URL...">
@@ -23,7 +23,9 @@
         <ul id="neighboursList"></ul>
         <button type="submit">Save</button>
     </form>
-
+    <button style="position: fixed; bottom: 40px; right: 80px; padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: green;" id="addServer">
+        Add Server
+    </button>
     <script src="modules/konva.js"></script>
     <script src="assets/js/graph.js"></script>
     <script src="assets/js/serveur.js"></script>

@@ -4,8 +4,16 @@ class Server {
         this.urlList = [...urlList];
         this.group = new Konva.Group({
             draggable: true,
+            id: 'server-'+this.name,
+            dragBoundFunc: function(pos) {
+                var x = pos.x;
+                var y = pos.y;
+                return { x: x, y: y };
+            }
         })
         this.neighbours = [];
+        this.x = 0;
+        this.y = 0;
     }
 
     display() 
@@ -13,15 +21,17 @@ class Server {
         var group = this.group
 
         var text = new Konva.Text({
-            x: width/2 - 12,
-            y: height/2 + 90,
+            x: -12,
+            y: 90,
             text: this.name,
-            fontSize: 18,
+            fontSize: 20,
+            fontFamily: 'Calibri',
             fill: 'black',
+            padding: 0,
             width: 100,
             height: 30,
             align: 'center',
-            fontStyle: 'bold',
+            valign: 'middle'
         });
 
         group.add(text);
@@ -29,8 +39,8 @@ class Server {
         Konva.Image.fromURL('/assets/images/server.png', function (image) {
             group.add(image);
             image.setAttrs({
-                x: width/2,
-                y: height/2,
+                x: 0,
+                y: 0,
                 scaleX: 0.15,
                 scaleY: 0.15,
             });
@@ -39,6 +49,11 @@ class Server {
 
         layer.add(group);
         this.group = group;
+        this.group.on('dragmove', () => {
+            this.x = this.group.x();
+            this.y = this.group.y();
+            updateConnector(this);
+        })
     }
 
     setNeighbours(neighbour) 
@@ -54,5 +69,18 @@ class Server {
     getNeighbours() 
     {
         return this.neighbours;
+    }
+
+    getX() {
+        return this.x;
+    }
+    getY() {
+        return this.y;
+    }
+    setX(x) {
+        this.x = x;
+    }
+    setY(y) {
+        this.y = y;
     }
 }

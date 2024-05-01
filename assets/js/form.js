@@ -1,20 +1,20 @@
 var serverList = [];
+var edges = [];
 
-// event which handle Enter keyboard press
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        document.getElementById('name').value = '';
-        document.getElementById('addURL').value = '';
-        document.getElementById('urlList').textContent = '';
-        neighboursList.length = 0;
-        var newServerForm = document.getElementById("newServerForm");
-        newServerForm.style.display = (newServerForm.style.display !== 'none') ? 'none' : 'block';
-        document.getElementById('neighboursOption').style.display = 'none';
-        document.getElementById('selectNeighbours').style.display = 'none';
-        document.getElementById('neighboursList').style.display = 'none';
-        document.getElementById("name").readOnly = false;
-    }
+document.getElementById('addServer').addEventListener('click', function (e) {
+    document.getElementById('name').value = '';
+    document.getElementById('addURL').value = '';
+    document.getElementById('urlList').textContent = '';
+    neighboursList.length = 0;
+    document.getElementById("newServerForm").style.display = (document.getElementById("newServerForm").style.display === 'none') ? 'block' : 'none';
+    document.getElementById('addServer').textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
+    document.getElementById('addServer').style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
+    document.getElementById('neighboursOption').style.display = 'none';
+    document.getElementById('selectNeighbours').style.display = 'none';
+    document.getElementById('neighboursList').style.display = 'none';
+    document.getElementById("name").readOnly = false;
 });
+
 
 // Event which handle Add URL button click
 var urlList = []
@@ -49,6 +49,8 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
         document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';
         document.getElementById("newServerForm").style.display = 'none';
+        document.getElementById('addServer').textContent = 'Add Server';
+        document.getElementById('addServer').style.backgroundColor = 'green';
         server.display();
     }
     else if (name.length > 0) {
@@ -58,10 +60,19 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
                 // update neighbours of node clicked
                 if (s.name == name) {
                     neighboursList.forEach(neighbour => {
+                        var sn = serverList.find(n => n.name == neighbour);
                         s.setNeighbours({
                             from: name,
                             to: neighbour
                         });
+
+                        var line = new Konva.Line({
+                            stroke: 'black',
+                            points: [s.getX()+45, s.getY()-10, sn.getX()+45, sn.getY()-10],
+                            id: s.name + '-' + sn.name
+                        });
+                        layer.add(line);
+                        edges.push(line);
                     });
                 }
                 // update neighbours nodes
@@ -72,13 +83,13 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
                     });
                 }
             });
+
         }
         // update the dom
         document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';
         document.getElementById("newServerForm").style.display = 'none';
         neighboursList.length = 0;
-        console.log(serverList);
     }
 });
 
