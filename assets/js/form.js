@@ -2,6 +2,7 @@ var serverList = [];
 var edges = [];
 var newServerForm = document.getElementById("newServerForm");
 var addServerButton = document.getElementById('addServer');
+var deleteServerButton = document.getElementById('delete');
 
 addServerButton.addEventListener('click', function (e) {
     document.getElementById('name').value = '';
@@ -15,6 +16,7 @@ addServerButton.addEventListener('click', function (e) {
     document.getElementById('selectNeighbours').style.display = 'none';
     document.getElementById('neighboursList').style.display = 'none';
     document.getElementById("name").readOnly = false;
+    deleteServerButton.style.display = 'none';
 });
 
 
