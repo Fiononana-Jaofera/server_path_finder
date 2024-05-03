@@ -25,6 +25,8 @@ layer.on('click', function (e) {
     document.getElementById('selectNeighbours').style.display = 'block';
     document.getElementById('neighboursList').style.display = 'block';
     document.getElementById("name").readOnly = true;
+    addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
+    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
 
     server.urlList.forEach(url => {
         var li = document.createElement('li');

@@ -1,14 +1,16 @@
 var serverList = [];
 var edges = [];
+var newServerForm = document.getElementById("newServerForm");
+var addServerButton = document.getElementById('addServer');
 
-document.getElementById('addServer').addEventListener('click', function (e) {
+addServerButton.addEventListener('click', function (e) {
     document.getElementById('name').value = '';
     document.getElementById('addURL').value = '';
     document.getElementById('urlList').textContent = '';
     neighboursList.length = 0;
-    document.getElementById("newServerForm").style.display = (document.getElementById("newServerForm").style.display === 'none') ? 'block' : 'none';
-    document.getElementById('addServer').textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
-    document.getElementById('addServer').style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
+    newServerForm.style.display = (newServerForm.style.display === 'none') ? 'block' : 'none';
+    addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
+    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
     document.getElementById('neighboursOption').style.display = 'none';
     document.getElementById('selectNeighbours').style.display = 'none';
     document.getElementById('neighboursList').style.display = 'none';
@@ -37,7 +39,7 @@ document.getElementById("addURLButton").addEventListener("click", e => {
 });
 
 // Event handle form submit
-document.getElementById("newServerForm").addEventListener("submit", e => {
+newServerForm.addEventListener("submit", e => {
     e.preventDefault();
     var name = document.getElementById("name").value;
     if (name.length > 0 && urlList.length > 0 && !serverList.some(s => s.name == name)) {
@@ -48,9 +50,7 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
         // update the dom
         document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';
-        document.getElementById("newServerForm").style.display = 'none';
-        document.getElementById('addServer').textContent = 'Add Server';
-        document.getElementById('addServer').style.backgroundColor = 'green';
+        newServerForm.style.display = 'none';
         server.display();
     }
     else if (name.length > 0) {
@@ -68,7 +68,7 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
                         // create connector
                         var line = new Konva.Line({
                             stroke: 'black',
-                            points: [s.getX()+45, s.getY()-10, sn.getX()+45, sn.getY()-10],
+                            points: [s.getX() + 45, s.getY() - 10, sn.getX() + 45, sn.getY() - 10],
                             id: s.name + '-' + sn.name
                         });
                         layer.add(line);
@@ -83,14 +83,15 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
                     });
                 }
             });
-
         }
         // update the dom
         document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';
-        document.getElementById("newServerForm").style.display = 'none';
+        newServerForm.style.display = 'none';
         neighboursList.length = 0;
     }
+    addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
+    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
 });
 
 var neighboursList = []
