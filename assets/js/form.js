@@ -96,6 +96,7 @@ newServerForm.addEventListener("submit", e => {
     addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
 });
 
+// handle select neighbours event
 var neighboursList = []
 document.getElementById('selectNeighbours').addEventListener("click", e => {
     var neighbour = document.getElementById('neighboursOption').value;
@@ -109,4 +110,13 @@ document.getElementById('selectNeighbours').addEventListener("click", e => {
         document.getElementById('selectNeighbours').value = '';
         neighboursList.push(neighbour);
     }
+});
+
+// handle delete server event
+deleteServerButton.addEventListener('click', () => {
+    serverSelected.destroy();
+    // update the dom
+    newServerForm.style.display = 'none';
+    addServerButton.textContent = "Add Server";
+    addServerButton.style.backgroundColor = "green";
 });

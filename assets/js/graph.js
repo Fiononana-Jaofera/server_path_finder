@@ -1,5 +1,6 @@
 var width = window.innerWidth;
 var height = window.innerHeight;
+var serverSelected;
 
 var stage = new Konva.Stage({
     container: 'container',
@@ -13,7 +14,8 @@ stage.add(layer);
 layer.on('click', function (e) {
     // get the element that was clicked on
     var element = e.target;
-    var server = serverList.filter(s => s.group._id == element.parent._id)[0]
+    var server = serverList.filter(s => s.group._id == element.parent._id)[0];
+    serverSelected = element.parent;
 
     document.getElementById('urlList').textContent = '';
     document.getElementById('neighboursOption').textContent = '';
