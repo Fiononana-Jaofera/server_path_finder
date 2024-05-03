@@ -1,6 +1,6 @@
 var width = window.innerWidth;
 var height = window.innerHeight;
-var serverSelected;
+var groupSelected;
 
 var stage = new Konva.Stage({
     container: 'container',
@@ -15,7 +15,7 @@ layer.on('click', function (e) {
     // get the element that was clicked on
     var element = e.target;
     var server = serverList.filter(s => s.group._id == element.parent._id)[0];
-    serverSelected = element.parent;
+    groupSelected = element.parent;
 
     document.getElementById('urlList').textContent = '';
     document.getElementById('neighboursOption').textContent = '';
@@ -56,8 +56,7 @@ function updateConnector(s) {
     var q = s;
     edges.forEach(e => {
         var idParts = e.attrs.id.split('-');
-        var moved = q.name;
-        if (idParts[0] == moved || idParts[1] == moved) {
+        if (idParts[0] == q.name || idParts[1] == q.name) {
             var s = serverList.find(t => t.name == idParts[0]);
             var sn = serverList.find(t => t.name == idParts[1]);
             e.points([s.getX()+45, s.getY()-10, sn.getX()+45, sn.getY()-10]);

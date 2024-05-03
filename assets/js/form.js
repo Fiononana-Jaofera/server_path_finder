@@ -114,7 +114,16 @@ document.getElementById('selectNeighbours').addEventListener("click", e => {
 
 // handle delete server event
 deleteServerButton.addEventListener('click', () => {
-    serverSelected.destroy();
+    var server = serverList.filter(s => s.group._id == groupSelected._id)[0];
+    if (edges.length > 0) {
+        edges.forEach(e => {
+            var idParts = e.attrs.id.split('-');
+            if (idParts[0]==server.name || idParts[1]==server.name) {
+                e.destroy();
+            }
+        })
+    }
+    groupSelected.destroy();
     // update the dom
     newServerForm.style.display = 'none';
     addServerButton.textContent = "Add Server";
