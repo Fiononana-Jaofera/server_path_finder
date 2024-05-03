@@ -48,17 +48,14 @@ layer.on('click', function (e) {
 });
 
 function updateConnector(s) {
-    var neighbours = s.getNeighbours();
-    console.log(neighbours);
-    neighbours.forEach(n => {
-        var selected = [n.from, n.to];
-        var sn = serverList.find(t => t.name === n.to);
-        var s = serverList.find(t => n.name === t.from);
-        edges.forEach(e => {
-            var idParts = e.attrs.id.split('-');
-            if (idParts[0] === selected[0] && idParts[1] === selected[1]) {
-                e.points([s.getX() + 45, s.getY() - 10, sn.getX() + 45, sn.getY() - 10]);
-            }
-        });
+    var q = s;
+    edges.forEach(e => {
+        var idParts = e.attrs.id.split('-');
+        var moved = q.name;
+        if (idParts[0] == moved || idParts[1] == moved) {
+            var s = serverList.find(t => t.name == idParts[0]);
+            var sn = serverList.find(t => t.name == idParts[1]);
+            e.points([s.getX()+45, s.getY()-10, sn.getX()+45, sn.getY()-10]);
+        }
     });
 }

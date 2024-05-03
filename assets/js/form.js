@@ -65,7 +65,7 @@ document.getElementById("newServerForm").addEventListener("submit", e => {
                             from: name,
                             to: neighbour
                         });
-
+                        // create connector
                         var line = new Konva.Line({
                             stroke: 'black',
                             points: [s.getX()+45, s.getY()-10, sn.getX()+45, sn.getY()-10],
