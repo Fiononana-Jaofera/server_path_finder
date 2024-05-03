@@ -23,6 +23,7 @@ layer.on('click', function (e) {
     document.getElementById('neighboursList').textContent = '';
     document.getElementById("newServerForm").style.display = 'block';
     document.getElementById("name").value = server.name;
+    document.getElementById('neighboursOption').textContent = '';
     document.getElementById('neighboursOption').style.display = 'block';
     document.getElementById('selectNeighbours').style.display = 'block';
     document.getElementById('neighboursList').style.display = 'block';
@@ -45,7 +46,7 @@ layer.on('click', function (e) {
         }
     });
 
-    server.neighbours.forEach(n => {
+    server.getNeighbours().forEach(n => {
         var li = document.createElement('li');
         li.textContent = n.to;
         document.getElementById('neighboursList').appendChild(li);

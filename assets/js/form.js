@@ -115,14 +115,25 @@ document.getElementById('selectNeighbours').addEventListener("click", e => {
 // handle delete server event
 deleteServerButton.addEventListener('click', () => {
     var server = serverList.filter(s => s.group._id == groupSelected._id)[0];
+
+    // delete the edge
     if (edges.length > 0) {
         edges.forEach(e => {
             var idParts = e.attrs.id.split('-');
             if (idParts[0]==server.name || idParts[1]==server.name) {
                 e.destroy();
+                edges = edges.filter(f => f!==e);
             }
         })
     }
+
+    // delete from neighbours of each other server
+    serverList.forEach(s => {
+        s.removeFromNeighbours(server.name);
+        serverList = serverList.filter(f => f!==server);
+    });
+
+    // delete the node
     groupSelected.destroy();
     // update the dom
     newServerForm.style.display = 'none';

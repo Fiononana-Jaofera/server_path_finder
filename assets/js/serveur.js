@@ -83,4 +83,10 @@ class Server {
     setY(y) {
         this.y = y;
     }
+
+    removeFromNeighbours(neighbour_name)
+    {
+        var temp = this.neighbours.filter(n => n.from !== neighbour_name && n.to !== neighbour_name);
+        this.neighbours = temp;
+    }
 }
