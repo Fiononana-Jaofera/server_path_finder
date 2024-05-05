@@ -36,7 +36,6 @@ class Server {
 
         group.add(text);
 
-        //Konva.Image.fromURL('https://cdn2.iconfinder.com/data/icons/whcompare-isometric-web-hosting-servers/50/value-server-512.png', function (image) {
         Konva.Image.fromURL('https://fiononana-jaofera.github.io/server_path_finder/assets/images/server.png', function (image) {
             group.add(image);
             image.setAttrs({
