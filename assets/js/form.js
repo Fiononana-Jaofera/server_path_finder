@@ -71,7 +71,8 @@ newServerForm.addEventListener("submit", e => {
                         var line = new Konva.Line({
                             stroke: 'black',
                             points: [s.getX() + 45, s.getY() - 10, sn.getX() + 45, sn.getY() - 10],
-                            id: s.name + '-' + sn.name
+                            id: s.name + '-' + sn.name,
+                            name: 'connector'
                         });
                         layer.add(line);
                         edges.push(line);

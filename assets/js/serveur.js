@@ -4,8 +4,8 @@ class Server {
         this.urlList = [...urlList];
         this.group = new Konva.Group({
             draggable: true,
-            id: 'server-'+this.name,
-            dragBoundFunc: function(pos) {
+            id: this.name,
+            dragBoundFunc: function (pos) {
                 var x = pos.x;
                 var y = pos.y;
                 return { x: x, y: y };
@@ -16,8 +16,7 @@ class Server {
         this.y = 0;
     }
 
-    display() 
-    {
+    display() {
         var group = this.group
 
         var text = new Konva.Text({
@@ -56,18 +55,15 @@ class Server {
         })
     }
 
-    setNeighbours(neighbour) 
-    {
+    setNeighbours(neighbour) {
         this.neighbours.push(neighbour);
     }
 
-    getUrlList() 
-    {
+    getUrlList() {
         return this.urlList;
     }
 
-    getNeighbours() 
-    {
+    getNeighbours() {
         return this.neighbours;
     }
 
@@ -84,8 +80,7 @@ class Server {
         this.y = y;
     }
 
-    removeFromNeighbours(neighbour_name)
-    {
+    removeFromNeighbours(neighbour_name) {
         var temp = this.neighbours.filter(n => n.from !== neighbour_name && n.to !== neighbour_name);
         this.neighbours = temp;
     }
