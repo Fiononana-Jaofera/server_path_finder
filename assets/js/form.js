@@ -149,16 +149,27 @@ deleteServerButton.addEventListener('click', () => {
     addServerButton.style.backgroundColor = "#5095ff";
 });
 
+// handle ping url event
 document.getElementById('pingURL').addEventListener('click', () => {
     var url = document.getElementById('url').value;
     if (url.length > 0) {
         var name = document.getElementById('name').value;
-        var server_start = serverList.filter(s => s.name == name);
+        var server_start = serverList.filter(s => s.name == name)[0];
         var serverfound = serverList.filter(s => s.urlList.includes(url));
         if (serverfound.length > 0) {
-            dijskra(server_start);
-            // var result = generate_road(server_start, serverfound[0]);
-            // console.log(result);
+            dijkstra(server_start);
+            var result = generate_road(server_start, serverfound[0]);
+            if (result.length>0) {
+                for (let i = 0; i < result.length - 1; i++) {
+                    let j = i + 1;
+                    var from = result[i];
+                    var to = result[j];
+                    var line = edges.find(e => e.attrs.id == from + '-' + to || e.attrs.id == to + '-' + from)
+                    line.stroke('green');
+                    line.strokeWidth(5);
+                    layer.batchDraw();
+                }
+            }
         }
     }
 })
