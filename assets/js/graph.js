@@ -1,5 +1,5 @@
-var width = window.innerWidth;
-var height = window.innerHeight;
+var width = window.innerWidth - 40;
+var height = window.innerHeight - 40;
 var groupSelected;
 
 var stage = new Konva.Stage({
@@ -21,16 +21,18 @@ layer.on('click', function (e) {
         document.getElementById('urlList').textContent = '';
         document.getElementById('neighboursOption').textContent = '';
         document.getElementById('addURL').value = '';
+        document.getElementById('weight').value = '';
         document.getElementById('neighboursList').textContent = '';
         document.getElementById("newServerForm").style.display = 'block';
         document.getElementById("name").value = server.name;
         document.getElementById('neighboursOption').textContent = '';
-        document.getElementById('neighboursOption').style.display = 'block';
+        document.getElementById('neighboursOption').style.display = 'inline';
         document.getElementById('selectNeighbours').style.display = 'block';
         document.getElementById('neighboursList').style.display = 'block';
+        document.getElementById('weight').style.display = 'inline';
         document.getElementById("name").readOnly = true;
         addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
-        addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
+        addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? '#5095ff' : 'red';
         deleteServerButton.style.display = 'block';
 
         server.urlList.forEach(url => {
@@ -49,7 +51,7 @@ layer.on('click', function (e) {
 
         server.getNeighbours().forEach(n => {
             var li = document.createElement('li');
-            li.textContent = n.to;
+            li.textContent = n.server.name + ' | Time: ' + n.weight;
             document.getElementById('neighboursList').appendChild(li);
         })
     }

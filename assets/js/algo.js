@@ -1,63 +1,63 @@
-class Server {
-    constructor() {
-        this.weight = Infinity;
-        this.neighbours = [];
-    }
-    getNeighbours() {
-        return this.neighbours;
-    }
-    setNeighbours(neighbours) {
-        this.neighbours.push(neighbours);
-    }
-}
+// class Server {
+//     constructor() {
+//         this.weight = Infinity;
+//         this.neighbours = [];
+//     }
+//     getNeighbours() {
+//         return this.neighbours;
+//     }
+//     setNeighbours(neighbours) {
+//         this.neighbours.push(neighbours);
+//     }
+// }
 
-var A = new Server();
-var B = new Server();
-var C = new Server();
-var D = new Server();
-var E = new Server();
+// var A = new Server();
+// var B = new Server();
+// var C = new Server();
+// var D = new Server();
+// var E = new Server();
 
-A.setNeighbours({
-    server : B,
-    weight : 10
-});
-A.setNeighbours({
-    server : C,
-    weight : 2
-});
-B.setNeighbours({
-    server : A,
-    weight : 10
-});
-B.setNeighbours({
-    server : D,
-    weight : 1
-});
-C.setNeighbours({
-    server : A,
-    weight : 2
-});
-C.setNeighbours({
-    server : D,
-    weight : 4
-});
-D.setNeighbours({
-    server : B,
-    weight: 1
-});
-D.setNeighbours({
-    server : C,
-    weight: 4
-});
-D.setNeighbours({
-    server : E,
-    weight: 4
-});
-E.setNeighbours({
-    server: D,
-    weight: 4,
-})
-var serverList = [A, B, C, D];
+// A.setNeighbours({
+//     server : B,
+//     weight : 10
+// });
+// A.setNeighbours({
+//     server : C,
+//     weight : 2
+// });
+// B.setNeighbours({
+//     server : A,
+//     weight : 10
+// });
+// B.setNeighbours({
+//     server : D,
+//     weight : 1
+// });
+// C.setNeighbours({
+//     server : A,
+//     weight : 2
+// });
+// C.setNeighbours({
+//     server : D,
+//     weight : 4
+// });
+// D.setNeighbours({
+//     server : B,
+//     weight: 1
+// });
+// D.setNeighbours({
+//     server : C,
+//     weight: 4
+// });
+// D.setNeighbours({
+//     server : E,
+//     weight: 4
+// });
+// E.setNeighbours({
+//     server: D,
+//     weight: 4,
+// })
+// var serverList = [A, B, C, D];
 
 function dijskra(node_start) {
     node_start.weight = 0;
@@ -88,6 +88,6 @@ function generate_road(node_start, node_end) {
     return result.reverse();
 }
 
-dijskra(A);
-var result = generate_road(A, B);
-console.log(result);
+// dijskra(A);
+// var result = generate_road(A, B);
+// console.log(result);

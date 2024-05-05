@@ -11,10 +11,11 @@ addServerButton.addEventListener('click', function (e) {
     neighboursList.length = 0;
     newServerForm.style.display = (newServerForm.style.display === 'none') ? 'block' : 'none';
     addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
-    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
+    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? '#5095ff' : 'red';
     document.getElementById('neighboursOption').style.display = 'none';
     document.getElementById('selectNeighbours').style.display = 'none';
     document.getElementById('neighboursList').style.display = 'none';
+    document.getElementById('weight').style.display = 'none';
     document.getElementById("name").readOnly = false;
     deleteServerButton.style.display = 'none';
 });
@@ -62,10 +63,10 @@ newServerForm.addEventListener("submit", e => {
                 // update neighbours of node clicked
                 if (s.name == name) {
                     neighboursList.forEach(neighbour => {
-                        var sn = serverList.find(n => n.name == neighbour);
+                        var sn = serverList.find(n => n.name == neighbour.name);
                         s.setNeighbours({
-                            from: name,
-                            to: neighbour
+                            server: sn,
+                            weight: neighbour.time,
                         });
                         // create connector
                         var line = new Konva.Line({
@@ -79,10 +80,10 @@ newServerForm.addEventListener("submit", e => {
                     });
                 }
                 // update neighbours nodes
-                else if (neighboursList.includes(s.name)) {
+                else if (neighboursList.some(n => n.name == s.name)) {
                     s.setNeighbours({
-                        from: s.name,
-                        to: name
+                        server: serverList.find(x => x.name == name),
+                        weight: neighboursList.find(n => n.name == s.name).time,
                     });
                 }
             });
@@ -94,7 +95,7 @@ newServerForm.addEventListener("submit", e => {
         neighboursList.length = 0;
     }
     addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
-    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? 'green' : 'red';
+    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? '#5095ff' : 'red';
 });
 
 // handle select neighbours event
@@ -102,14 +103,16 @@ var neighboursList = []
 document.getElementById('selectNeighbours').addEventListener("click", e => {
     var neighbour = document.getElementById('neighboursOption').value;
     var name = document.getElementById('name').value;
+    var weight = document.getElementById('weight').value;
     var server = serverList.find(s => s.name == name)
 
-    if (neighbour.length > 0 && !neighboursList.includes(neighbour) && !server.getNeighbours().some(n => n.to == neighbour)) {
+    if (neighbour.length > 0 && !neighboursList.some(n => n.name == neighbour) && !server.getNeighbours().some(n => n.server.name == neighbour) && weight.length > 0) {
         var li = document.createElement('li');
-        li.textContent = neighbour;
+        li.textContent = neighbour + ' | Time: ' + weight;
         document.getElementById('neighboursList').appendChild(li);
         document.getElementById('selectNeighbours').value = '';
-        neighboursList.push(neighbour);
+        document.getElementById('weight').value = '';
+        neighboursList.push({name: neighbour, time: Number(weight)});
     }
 });
 
@@ -139,5 +142,5 @@ deleteServerButton.addEventListener('click', () => {
     // update the dom
     newServerForm.style.display = 'none';
     addServerButton.textContent = "Add Server";
-    addServerButton.style.backgroundColor = "green";
+    addServerButton.style.backgroundColor = "#5095ff";
 });

@@ -14,6 +14,7 @@ class Server {
         this.neighbours = [];
         this.x = 0;
         this.y = 0;
+        this.weight = Infinity;
     }
 
     display() {
@@ -81,7 +82,7 @@ class Server {
     }
 
     removeFromNeighbours(neighbour_name) {
-        var temp = this.neighbours.filter(n => n.from !== neighbour_name && n.to !== neighbour_name);
+        var temp = this.neighbours.filter(n.name !== neighbour_name);
         this.neighbours = temp;
     }
 }
