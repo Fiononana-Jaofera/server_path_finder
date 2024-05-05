@@ -1,13 +1,17 @@
 var serverList = [];
 var edges = [];
+var urlList = [];
 var newServerForm = document.getElementById("newServerForm");
 var addServerButton = document.getElementById('addServer');
 var deleteServerButton = document.getElementById('delete');
+var saveButton = document.getElementById('save');
+
 
 addServerButton.addEventListener('click', function (e) {
     document.getElementById('name').value = '';
     document.getElementById('addURL').value = '';
     document.getElementById('urlList').textContent = '';
+    saveButton.style.width = '100%';
     neighboursList.length = 0;
     newServerForm.style.display = (newServerForm.style.display === 'none') ? 'block' : 'none';
     addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
@@ -17,12 +21,12 @@ addServerButton.addEventListener('click', function (e) {
     document.getElementById('neighboursList').style.display = 'none';
     document.getElementById('weight').style.display = 'none';
     document.getElementById("name").readOnly = false;
+    document.getElementById('pingURL').style.display = 'none';
     deleteServerButton.style.display = 'none';
 });
 
 
 // Event which handle Add URL button click
-var urlList = []
 document.getElementById("addURLButton").addEventListener("click", e => {
     var url = document.getElementById("addURL").value;
     var name = document.getElementById("name").value;
@@ -71,7 +75,7 @@ newServerForm.addEventListener("submit", e => {
                         // create connector
                         var line = new Konva.Line({
                             stroke: 'black',
-                            points: [s.getX() + 45, s.getY() - 10, sn.getX() + 45, sn.getY() - 10],
+                            points: [s.getX() + 45 + width/3, s.getY() + height/2 - 10, sn.getX() + 45 + width/3, sn.getY() + height/2 - 10],
                             id: s.name + '-' + sn.name,
                             name: 'connector'
                         });
@@ -144,3 +148,17 @@ deleteServerButton.addEventListener('click', () => {
     addServerButton.textContent = "Add Server";
     addServerButton.style.backgroundColor = "#5095ff";
 });
+
+document.getElementById('pingURL').addEventListener('click', () => {
+    var url = document.getElementById('url').value;
+    if (url.length > 0) {
+        var name = document.getElementById('name').value;
+        var server_start = serverList.filter(s => s.name == name);
+        var serverfound = serverList.filter(s => s.urlList.includes(url));
+        if (serverfound.length > 0) {
+            dijskra(server_start);
+            // var result = generate_road(server_start, serverfound[0]);
+            // console.log(result);
+        }
+    }
+})

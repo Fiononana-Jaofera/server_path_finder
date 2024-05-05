@@ -19,10 +19,10 @@ class Server {
 
     display() {
         var group = this.group
-
+        
         var text = new Konva.Text({
-            x: -12,
-            y: 90,
+            x: width/3-12,
+            y: height/2+90,
             text: this.name,
             fontSize: 20,
             fontFamily: 'Calibri',
@@ -39,8 +39,8 @@ class Server {
         Konva.Image.fromURL('/assets/images/server.png', function (image) {
             group.add(image);
             image.setAttrs({
-                x: 0,
-                y: 0,
+                x: width/3,
+                y: height/2,
                 scaleX: 0.15,
                 scaleY: 0.15,
             });

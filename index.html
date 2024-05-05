@@ -24,10 +24,16 @@
         </div>
         <button type="button" id="selectNeighbours">select neighbours</button>
         <ul id="neighboursList"></ul>
-        <button type="button" id="delete" style="display: none;">Delete</button>
-        <button type="submit">Save</button>
+        <div style="display: none; justify-content: space-between; width: 100%;" id="pingURL">
+            <input type="text" id="url" placeholder="Add URL to ping...">
+            <button type="button" id="ping">ping</button>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <button type="button" id="delete" style="display: none;">Delete</button>
+            <button type="submit" id="save">Save</button>
+        </div>
     </form>
-    <button style="position: fixed; bottom: 40px; right: 80px; padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #5095ff;" id="addServer">
+    <button style="position: fixed; bottom: 40px; left: 40px; padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #5095ff;" id="addServer">
         Add Server
     </button>
     <script src="modules/konva.js"></script>
