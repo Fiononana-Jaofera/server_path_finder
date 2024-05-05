@@ -18,16 +18,20 @@
         <button type="button" id="addURLButton">Add URL</button>
         <span style="font-weight: bold;">URL list</span>
         <ul id="urlList"></ul>
-        <select id="neighboursOption"></select>
+        <div>
+            <select id="neighboursOption"></select>
+            <input type="number" id="weight" min=0 placeholder="duration ms">
+        </div>
         <button type="button" id="selectNeighbours">select neighbours</button>
         <ul id="neighboursList"></ul>
         <button type="button" id="delete" style="display: none;">Delete</button>
         <button type="submit">Save</button>
     </form>
-    <button style="position: fixed; bottom: 40px; right: 80px; padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: green;" id="addServer">
+    <button style="position: fixed; bottom: 40px; right: 80px; padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #5095ff;" id="addServer">
         Add Server
     </button>
     <script src="modules/konva.js"></script>
+    <script src="assets/js/algo.js"></script>
     <script src="assets/js/graph.js"></script>
     <script src="assets/js/serveur.js"></script>
     <script src="assets/js/form.js"></script>

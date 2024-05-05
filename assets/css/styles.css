@@ -3,6 +3,16 @@
  }
 body {
     position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    border: 20px solid #5095ff;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    margin: 0;
 }
 
 #newServerForm {
@@ -90,4 +100,12 @@ body {
     font-weight: bold;
     display: block;
     margin: 10px;
+}
+
+#newServerForm select {
+    width: 69%;
+}
+
+#newServerForm #weight {
+    width: 30%;
 }

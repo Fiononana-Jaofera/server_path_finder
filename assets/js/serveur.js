@@ -82,7 +82,7 @@ class Server {
     }
 
     removeFromNeighbours(neighbour_name) {
-        var temp = this.neighbours.filter(n.name !== neighbour_name);
+        var temp = this.neighbours.filter(n => n.server.name !== neighbour_name);
         this.neighbours = temp;
     }
 }
