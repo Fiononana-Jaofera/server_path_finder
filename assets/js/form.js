@@ -151,6 +151,8 @@ deleteServerButton.addEventListener('click', () => {
 
 // handle ping url event
 document.getElementById('pingURL').addEventListener('click', () => {
+    var text = stage.find('#result')[0];
+    if (text != undefined) text.destroy();
     var url = document.getElementById('url').value;
     if (url.length > 0) {
         var name = document.getElementById('name').value;
@@ -177,10 +179,6 @@ document.getElementById('pingURL').addEventListener('click', () => {
                     line.stroke('green');
                     layer.batchDraw();
                 }
-                newServerForm.style.display = 'none';
-                addServerButton.style.backgroundColor = '#5095ff';
-                addServerButton.textContent = 'Add Server';
-                document.getElementById('reset').style.display = 'block';
 
                 var text_result = new Konva.Text({
                     id: 'result',
@@ -195,12 +193,37 @@ document.getElementById('pingURL').addEventListener('click', () => {
                 layer.add(text_result);
             }
             else {
-                console.log(`no path found to ping ${url} from ${server_start.name}`);
+                var text_result = new Konva.Text({
+                    id: 'result',
+                    x: width / 2,
+                    y: height - 40,
+                    text: `no path found to ping ${url} from ${server_start.name}`,
+                    fontSize: 20,
+                    fontFamily: 'Calibri',
+                    fill: 'black',
+                    fontStyle: 'bold',
+                });
+                layer.add(text_result);
             }
         }
         else {
-            console.log(`server which contain ${url} url doesn't exist`);
+            var text_result = new Konva.Text({
+                id: 'result',
+                x: width / 2,
+                y: height - 40,
+                text: `server which contain ${url} url doesn't exist`,
+                fontSize: 20,
+                fontFamily: 'Calibri',
+                fill: 'black',
+                fontStyle: 'bold',
+            });
+            layer.add(text_result);
         }
+        newServerForm.style.display = 'none';
+        addServerButton.style.backgroundColor = '#5095ff';
+        addServerButton.textContent = 'Add Server';
+        addServerButton.style.display = 'none';
+        document.getElementById('reset').style.display = 'block';
     }
 });
 
