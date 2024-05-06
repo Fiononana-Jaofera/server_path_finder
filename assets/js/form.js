@@ -181,6 +181,18 @@ document.getElementById('pingURL').addEventListener('click', () => {
                 addServerButton.style.backgroundColor = '#5095ff';
                 addServerButton.textContent = 'Add Server';
                 document.getElementById('reset').style.display = 'block';
+
+                var text_result = new Konva.Text({
+                    id: 'result',
+                    x: width / 2,
+                    y: height - 40,
+                    text: `ping from ${result[0]} to ${url} take ${server_end.weight}ms.`,
+                    fontSize: 20,
+                    fontFamily: 'Calibri',
+                    fill: 'black',
+                    fontStyle: 'bold',
+                });
+                layer.add(text_result);
             }
             else {
                 console.log(`no path found to ping ${url} from ${server_start.name}`);
@@ -200,22 +212,25 @@ document.getElementById('reset').addEventListener('click', () => {
     edges.forEach(e => {
         e.stroke('black');
     })
+
+    var text = stage.find('#result')[0];
+    text.destroy();
 })
 
 // handle export pdf event
 document.getElementById('export').addEventListener('click', () => {
     addServerButton.style.display = 'block';
-    
+
     document.getElementById('reset').style.display = 'none';
     document.getElementById('export').style.display = 'none';
-    
+
     var pdf = new jsPDF('l', 'px', [stage.width(), stage.height()]);
     pdf.setTextColor('#000000');
 
     var dataURL = stage.toDataURL({ pixelRatio: 2 });
-    
+
     // Add image to PDF
-    pdf.addImage(dataURL, 'PNG', 0, 0, width*0.60, height*0.75);
+    pdf.addImage(dataURL, 'PNG', 0, 0, width * 0.60, height * 0.75);
     pdf.save('KonvaStage.pdf');
     document.getElementById('reset').click();
 })
