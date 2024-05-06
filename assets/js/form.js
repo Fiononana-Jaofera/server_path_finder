@@ -75,7 +75,7 @@ newServerForm.addEventListener("submit", e => {
                         // create connector
                         var line = new Konva.Line({
                             stroke: 'black',
-                            points: [s.getX() + 45 + width/3, s.getY() + height/2 - 10, sn.getX() + 45 + width/3, sn.getY() + height/2 - 10],
+                            points: [s.getX() + 45 + width / 3, s.getY() + height / 2 - 10, sn.getX() + 45 + width / 3, sn.getY() + height / 2 - 10],
                             id: s.name + '-' + sn.name,
                             name: 'connector'
                         });
@@ -116,7 +116,7 @@ document.getElementById('selectNeighbours').addEventListener("click", e => {
         document.getElementById('neighboursList').appendChild(li);
         document.getElementById('selectNeighbours').value = '';
         document.getElementById('weight').value = '';
-        neighboursList.push({name: neighbour, time: Number(weight)});
+        neighboursList.push({ name: neighbour, time: Number(weight) });
     }
 });
 
@@ -128,9 +128,9 @@ deleteServerButton.addEventListener('click', () => {
     if (edges.length > 0) {
         edges.forEach(e => {
             var idParts = e.attrs.id.split('-');
-            if (idParts[0]==server.name || idParts[1]==server.name) {
+            if (idParts[0] == server.name || idParts[1] == server.name) {
                 e.destroy();
-                edges = edges.filter(f => f!==e);
+                edges = edges.filter(f => f !== e);
             }
         })
     }
@@ -138,7 +138,7 @@ deleteServerButton.addEventListener('click', () => {
     // delete from neighbours of each other server
     serverList.forEach(s => {
         s.removeFromNeighbours(server.name);
-        serverList = serverList.filter(f => f!==server);
+        serverList = serverList.filter(f => f !== server);
     });
 
     // delete the node
@@ -159,17 +159,48 @@ document.getElementById('pingURL').addEventListener('click', () => {
         if (serverfound.length > 0) {
             dijkstra(server_start);
             var result = generate_road(server_start, serverfound[0]);
-            if (result.length>0) {
+            if (result.length > 0) {
                 for (let i = 0; i < result.length - 1; i++) {
                     let j = i + 1;
                     var from = result[i];
                     var to = result[j];
                     var line = edges.find(e => e.attrs.id == from + '-' + to || e.attrs.id == to + '-' + from)
                     line.stroke('green');
-                    line.strokeWidth(5);
                     layer.batchDraw();
                 }
+                newServerForm.style.display = 'none';
+                addServerButton.style.backgroundColor = '#5095ff';
+                addServerButton.textContent = 'Add Server';
+                document.getElementById('reset').style.display = 'block';
             }
         }
     }
+})
+
+// handle reset event
+document.getElementById('reset').addEventListener('click', () => {
+    addServerButton.style.display = 'block';
+    document.getElementById('reset').style.display = 'none';
+
+    edges.forEach(e => {
+        e.stroke('black');
+    })
+})
+
+// handle export pdf event
+document.getElementById('export').addEventListener('click', () => {
+    addServerButton.style.display = 'block';
+    
+    document.getElementById('reset').style.display = 'none';
+    document.getElementById('export').style.display = 'none';
+    
+    var pdf = new jsPDF('l', 'px', [stage.width(), stage.height()]);
+    pdf.setTextColor('#000000');
+
+    var dataURL = stage.toDataURL({ pixelRatio: 2 });
+    
+    // Add image to PDF
+    pdf.addImage(dataURL, 'PNG', 0, 0, width*0.75, height*0.75);
+    pdf.save('KonvaStage.pdf');
+    document.getElementById('reset').click();
 })

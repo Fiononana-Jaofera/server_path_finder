@@ -33,10 +33,19 @@
             <button type="submit" id="save">Save</button>
         </div>
     </form>
-    <button style="position: fixed; bottom: 40px; left: 40px; padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #5095ff;" id="addServer">
-        Add Server
-    </button>
+    <div style="position: fixed; bottom: 40px; left: 40px; margin: 0; padding: 0; display: flex; gap: 10px; justify-content: space-around;">
+        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #5095ff;" id="addServer">
+            Add Server
+        </button>
+        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #0f0273;" id="export">
+            Export pdf
+        </button>
+        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(79, 173, 79); display: none;" id="reset">
+            Reset
+        </button>
+    </div>
     <script src="modules/konva.js"></script>
+    <script src="modules/jsPDF.js"></script>
     <script src="assets/js/algo.js"></script>
     <script src="assets/js/graph.js"></script>
     <script src="assets/js/serveur.js"></script>
