@@ -20,9 +20,13 @@ function dijkstra(node_start) {
 function generate_road(node_start, node_end) {
     var q = node_end;
     var result = [q.name];
-    while (q!==node_start) {
-        result.push(q.pred.name);
-        q = q.pred;
+    try {
+        while (q!==node_start) {
+            result.push(q.pred.name);
+            q = q.pred;
+        }
+        return result.reverse();
+    } catch (error) {
+        return [];
     }
-    return result.reverse();
 }

@@ -158,13 +158,22 @@ document.getElementById('pingURL').addEventListener('click', () => {
         var serverfound = serverList.filter(s => s.urlList.includes(url));
         if (serverfound.length > 0) {
             dijkstra(server_start);
-            var result = generate_road(server_start, serverfound[0]);
+
+            // find the server end which have the smallest weight
+            var server_end = serverfound.reduce((prev, curr) => {
+                return (prev.weight < curr.weight) ? prev : curr;
+            }, serverfound[0]);
+
+            // generate the road
+            var result = generate_road(server_start, server_end);
+
+            // update the dom
             if (result.length > 0) {
-                for (let i = 0; i < result.length - 1; i++) {
-                    let j = i + 1;
+                for (var i = 0; i < result.length - 1; i++) {
+                    var j = i + 1;
                     var from = result[i];
                     var to = result[j];
-                    var line = edges.find(e => e.attrs.id == from + '-' + to || e.attrs.id == to + '-' + from)
+                    var line = edges.find(e => e.attrs.id == from + '-' + to || e.attrs.id == to + '-' + from);
                     line.stroke('green');
                     layer.batchDraw();
                 }
@@ -173,9 +182,15 @@ document.getElementById('pingURL').addEventListener('click', () => {
                 addServerButton.textContent = 'Add Server';
                 document.getElementById('reset').style.display = 'block';
             }
+            else {
+                console.log(`no path found to ping ${url} from ${server_start.name}`);
+            }
+        }
+        else {
+            console.log(`server which contain ${url} url doesn't exist`);
         }
     }
-})
+});
 
 // handle reset event
 document.getElementById('reset').addEventListener('click', () => {
@@ -200,7 +215,7 @@ document.getElementById('export').addEventListener('click', () => {
     var dataURL = stage.toDataURL({ pixelRatio: 2 });
     
     // Add image to PDF
-    pdf.addImage(dataURL, 'PNG', 0, 0, width*0.75, height*0.75);
+    pdf.addImage(dataURL, 'PNG', 0, 0, width*0.60, height*0.75);
     pdf.save('KonvaStage.pdf');
     document.getElementById('reset').click();
 })

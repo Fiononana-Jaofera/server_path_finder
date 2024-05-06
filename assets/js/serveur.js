@@ -36,7 +36,7 @@ class Server {
 
         group.add(text);
 
-        Konva.Image.fromURL('https://fiononana-jaofera.github.io/server_path_finder/assets/images/server.png', function (image) {
+        Konva.Image.fromURL('assets/images/server.png', function (image) {
             group.add(image);
             image.setAttrs({
                 x: width/3,
