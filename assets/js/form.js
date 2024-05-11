@@ -237,7 +237,7 @@ document.getElementById('reset').addEventListener('click', () => {
     })
 
     var text = stage.find('#result')[0];
-    text.destroy();
+    if (text != undefined) text.destroy();
 })
 
 // handle export pdf event
