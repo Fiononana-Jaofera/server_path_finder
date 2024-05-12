@@ -21,17 +21,11 @@ layer.on('click', function (e) {
         groupSelected = element.parent;
 
         document.getElementById('urlList').textContent = '';
-        document.getElementById('neighboursOption').textContent = '';
         document.getElementById('addURL').value = '';
-        // document.getElementById('weight').value = '';
         document.getElementById('neighboursList').textContent = '';
         document.getElementById("newServerForm").style.display = 'block';
         document.getElementById("name").value = server.name;
-        document.getElementById('neighboursOption').textContent = '';
-        document.getElementById('neighboursOption').style.display = 'inline';
-        document.getElementById('selectNeighbours').style.display = 'block';
         document.getElementById('neighboursList').style.display = 'block';
-        // document.getElementById('weight').style.display = 'inline';
         document.getElementById('pingURL').style.display = 'flex';
         document.getElementById('ping').disabled = true;
 
@@ -51,14 +45,6 @@ layer.on('click', function (e) {
         });
 
         
-        serverList.forEach(s => {
-            var option = document.createElement('option');
-            option.textContent = s.name;
-            if (s.name != server.name) {
-                document.getElementById('neighboursOption').appendChild(option);
-            }
-        });
-
         server.getNeighbours().forEach(n => {
             var li = document.createElement('li');
             neighbours.push(n.server.name);

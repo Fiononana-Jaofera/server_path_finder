@@ -17,10 +17,7 @@ addServerButton.addEventListener('click', function (e) {
     newServerForm.style.display = (newServerForm.style.display === 'none') ? 'block' : 'none';
     addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
     addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? '#5095ff' : 'red';
-    document.getElementById('neighboursOption').style.display = 'none';
-    document.getElementById('selectNeighbours').style.display = 'none';
     document.getElementById('neighboursList').style.display = 'none';
-    // document.getElementById('weight').style.display = 'none';
     document.getElementById("name").readOnly = false;
     document.getElementById('pingURL').style.display = 'none';
     deleteServerButton.style.display = 'none';
@@ -105,21 +102,6 @@ newServerForm.addEventListener("submit", e => {
 
 // handle select neighbours event
 var neighboursList = []
-document.getElementById('selectNeighbours').addEventListener("click", e => {
-    var neighbour = document.getElementById('neighboursOption').value;
-    var name = document.getElementById('name').value;
-    // var weight = document.getElementById('weight').value;
-    var server = serverList.find(s => s.name == name)
-
-    if (neighbour.length > 0 && !neighboursList.some(n => n.name == neighbour) && !server.getNeighbours().some(n => n.server.name == neighbour) && weight.length > 0) {
-        var li = document.createElement('li');
-        li.textContent = neighbour + ' | Time: ' + weight;
-        document.getElementById('neighboursList').appendChild(li);
-        document.getElementById('selectNeighbours').value = '';
-        // document.getElementById('weight').value = '';
-        neighboursList.push({ name: neighbour, time: Number(weight) });
-    }
-});
 
 // handle delete server event
 deleteServerButton.addEventListener('click', () => {
