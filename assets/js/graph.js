@@ -23,7 +23,7 @@ layer.on('click', function (e) {
         document.getElementById('urlList').textContent = '';
         document.getElementById('neighboursOption').textContent = '';
         document.getElementById('addURL').value = '';
-        document.getElementById('weight').value = '';
+        // document.getElementById('weight').value = '';
         document.getElementById('neighboursList').textContent = '';
         document.getElementById("newServerForm").style.display = 'block';
         document.getElementById("name").value = server.name;
@@ -31,7 +31,7 @@ layer.on('click', function (e) {
         document.getElementById('neighboursOption').style.display = 'inline';
         document.getElementById('selectNeighbours').style.display = 'block';
         document.getElementById('neighboursList').style.display = 'block';
-        document.getElementById('weight').style.display = 'inline';
+        // document.getElementById('weight').style.display = 'inline';
         document.getElementById('pingURL').style.display = 'flex';
         document.getElementById('ping').disabled = true;
 

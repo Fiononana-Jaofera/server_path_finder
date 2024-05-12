@@ -4,6 +4,7 @@ var urlList = [];
 var newServerForm = document.getElementById("newServerForm");
 var addServerButton = document.getElementById('addServer');
 var deleteServerButton = document.getElementById('delete');
+var createLinkButton = document.getElementById('createLink');
 var saveButton = document.getElementById('save');
 
 
@@ -19,7 +20,7 @@ addServerButton.addEventListener('click', function (e) {
     document.getElementById('neighboursOption').style.display = 'none';
     document.getElementById('selectNeighbours').style.display = 'none';
     document.getElementById('neighboursList').style.display = 'none';
-    document.getElementById('weight').style.display = 'none';
+    // document.getElementById('weight').style.display = 'none';
     document.getElementById("name").readOnly = false;
     document.getElementById('pingURL').style.display = 'none';
     deleteServerButton.style.display = 'none';
@@ -59,47 +60,47 @@ newServerForm.addEventListener("submit", e => {
         document.getElementById('urlList').textContent = '';
         newServerForm.style.display = 'none';
         server.display();
-    }
-    else if (name.length > 0) {
 
-        if (neighboursList.length > 0) { // handle save neighbours
-            serverList.forEach(s => {
-                // update neighbours of node clicked
-                if (s.name == name) {
-                    neighboursList.forEach(neighbour => {
-                        var sn = serverList.find(n => n.name == neighbour.name);
-                        s.setNeighbours({
-                            server: sn,
-                            weight: neighbour.time,
-                        });
-                        // create connector
-                        var line = new Konva.Line({
-                            stroke: 'black',
-                            points: [s.getX() + 45 + width / 3, s.getY() + height / 2 - 10, sn.getX() + 45 + width / 3, sn.getY() + height / 2 - 10],
-                            id: s.name + '-' + sn.name,
-                            name: 'connector'
-                        });
-                        layer.add(line);
-                        edges.push(line);
-                    });
-                }
-                // update neighbours nodes
-                else if (neighboursList.some(n => n.name == s.name)) {
-                    s.setNeighbours({
-                        server: serverList.find(x => x.name == name),
-                        weight: neighboursList.find(n => n.name == s.name).time,
-                    });
-                }
-            });
+        //handle create link button
+        if (serverList.length>=2) {
+            createLinkButton.style.display = 'block';
         }
-        // update the dom
-        document.getElementById('name').value = '';
-        document.getElementById('urlList').textContent = '';
-        newServerForm.style.display = 'none';
-        neighboursList.length = 0;
     }
-    addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
-    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? '#5095ff' : 'red';
+    // handle create link between server
+    else {
+        var between = document.getElementById('betweenoption').value;
+        var and = document.getElementById('andoption').value;
+        var weight = document.getElementById('time').value;
+        if (between !== and && weight.length > 0) {
+            var sb = serverList.find(n => n.name == between);
+            var sa = serverList.find(n => n.name == and);
+            if (sa.getNeighbours().some(s => s.server = sb)) {
+                alert('server already in neighbours');
+                return;
+            }
+            sb.setNeighbours({
+                server: sa,
+                weight: Number(weight),
+            });
+
+            sa.setNeighbours({
+                server: sb,
+                weight: Number(weight),
+            })
+
+            // create connector
+            var line = new Konva.Line({
+                stroke: 'black',
+                points: [sb.getX() + 45 + width / 3, sb.getY() + height / 2 - 10, sa.getX() + 45 + width / 3, sa.getY() + height / 2 - 10],
+                id: sb.name + '-' + sa.name,
+                name: 'connector'
+            });
+            layer.add(line);
+            edges.push(line);
+
+            newServerForm.style.display = 'none';
+        }
+    }
 });
 
 // handle select neighbours event
@@ -107,7 +108,7 @@ var neighboursList = []
 document.getElementById('selectNeighbours').addEventListener("click", e => {
     var neighbour = document.getElementById('neighboursOption').value;
     var name = document.getElementById('name').value;
-    var weight = document.getElementById('weight').value;
+    // var weight = document.getElementById('weight').value;
     var server = serverList.find(s => s.name == name)
 
     if (neighbour.length > 0 && !neighboursList.some(n => n.name == neighbour) && !server.getNeighbours().some(n => n.server.name == neighbour) && weight.length > 0) {
@@ -115,7 +116,7 @@ document.getElementById('selectNeighbours').addEventListener("click", e => {
         li.textContent = neighbour + ' | Time: ' + weight;
         document.getElementById('neighboursList').appendChild(li);
         document.getElementById('selectNeighbours').value = '';
-        document.getElementById('weight').value = '';
+        // document.getElementById('weight').value = '';
         neighboursList.push({ name: neighbour, time: Number(weight) });
     }
 });
@@ -147,6 +148,11 @@ deleteServerButton.addEventListener('click', () => {
     newServerForm.style.display = 'none';
     addServerButton.textContent = "Add Server";
     addServerButton.style.backgroundColor = "#5095ff";
+
+    // handle create link button
+    if(serverList.length <= 1) {
+        createLinkButton.style.display = 'none';
+    }
 });
 
 // handle ping url event
@@ -256,4 +262,25 @@ document.getElementById('export').addEventListener('click', () => {
     pdf.addImage(dataURL, 'PNG', 0, 0, width * 0.60, height * 0.75);
     pdf.save('KonvaStage.pdf');
     document.getElementById('reset').click();
+})
+
+// handle create Link event
+createLinkButton.addEventListener('click', () => {
+    newServerForm.style.display = 'block';
+    document.getElementById('title').textContent = 'Create link';
+    document.getElementById('createServer').style.display = 'none';
+    document.getElementById('createLinkLabels').style.display = 'block';
+    serverList.forEach(s => {
+        var option_between = document.createElement('option');
+        var option_and = document.createElement('option');
+        option_between.textContent = s.name;
+        option_and.textContent = s.name;
+        document.getElementById('betweenoption').appendChild(option_between);
+        document.getElementById('andoption').appendChild(option_and);
+    });
+    document.getElementById("name").textContent = '';
+})
+
+document.getElementById('cancel').addEventListener('click', () => {
+    newServerForm.style.display = 'none';
 })
