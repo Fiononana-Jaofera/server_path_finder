@@ -21,11 +21,11 @@
             <ul id="urlList"></ul>
         </div>
         <ul id="neighboursList"></ul>
-        <div style="display: none; justify-content: space-between; width: 100%;" id="pingURL">
+        <!-- <div style="display: none; justify-content: space-between; width: 100%;" id="pingURL">
             <input type="text" id="url" placeholder="Add URL to ping...">
             <button type="button" id="ping">ping</button>
-        </div>
-        
+        </div> -->
+
         <div id="createLinkLabels" style="display: none;">
             <label for="betweenoption" style="display: block; font-weight: bold;">Between</label>
             <select id="betweenoption" style="display: block; width: 100%;"></select>
@@ -34,32 +34,48 @@
             <label for="time" style="display: block; font-weight: bold;">weight:</label>
             <input type="number" id="time" min=0 placeholder="duration ms" style="display: block; width: 100%;">
         </div>
-        
+
         <div style="display: flex; justify-content: space-between;">
             <button type="button" id="delete" style="display: none;">Delete</button>
             <button type="submit" id="save">Save</button>
         </div>
         <button type="button" id="cancel">Cancel</button>
     </form>
-    <div style="position: fixed; bottom: 40px; left: 40px; margin: 0; padding: 0; display: flex; gap: 10px; justify-content: space-around;">
-        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #5095ff;" id="addServer">
+    <div
+        style="position: fixed; bottom: 40px; left: 40px; margin: 0; padding: 0; display: flex; gap: 10px; justify-content: space-around;">
+        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #5095ff;"
+            id="addServer">
             Add Server
         </button>
-        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #031b3e;" id="export">
+        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: #031b3e;"
+            id="export">
             Export pdf
         </button>
-        <button type="button" style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(194, 33, 194); display: none;" id="createLink">
+        <button type="button"
+            style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(194, 33, 194); display: none;"
+            id="createLink">
             Create link
         </button>
-        <button style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(79, 173, 79); display: none;" id="reset">
+        <button
+            style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(79, 173, 79); display: none;"
+            id="reset">
             Reset
         </button>
+    </div>
+    <div id="browser">
+        <h2 id="browserTitle">Browser</h2>
+        <div style="display: flex; flex-direction: row; justify-content: stretch; gap: 5px;">
+            <input type="text" id="url" placeholder="Enter the url...">
+            <button type="button" id="navigate" style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(71, 68, 71);">Navigate</button>
+        </div>
+        <div id="content"></div>
     </div>
     <script src="modules/konva.js"></script>
     <script src="modules/jsPDF.js"></script>
     <script src="assets/js/algo.js"></script>
     <script src="assets/js/graph.js"></script>
     <script src="assets/js/serveur.js"></script>
+    <script src="assets/js/browser.js"></script>
     <script src="assets/js/form.js"></script>
 </body>
 

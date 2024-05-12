@@ -13,10 +13,7 @@ addServerButton.addEventListener('click', function (e) {
     document.getElementById('addURL').value = '';
     document.getElementById('urlList').textContent = '';
     saveButton.style.width = '100%';
-    neighboursList.length = 0;
-    newServerForm.style.display = (newServerForm.style.display === 'none') ? 'block' : 'none';
-    addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
-    addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? '#5095ff' : 'red';
+    newServerForm.style.display = 'block';
     document.getElementById('neighboursList').style.display = 'none';
     document.getElementById("name").readOnly = false;
     document.getElementById('pingURL').style.display = 'none';
@@ -59,7 +56,7 @@ newServerForm.addEventListener("submit", e => {
         server.display();
 
         //handle create link button
-        if (serverList.length>=2) {
+        if (serverList.length >= 2) {
             createLinkButton.style.display = 'block';
         }
     }
@@ -72,7 +69,7 @@ newServerForm.addEventListener("submit", e => {
             var sb = serverList.find(n => n.name == between);
             var sa = serverList.find(n => n.name == and);
             if (sa.getNeighbours().some(s => s.server = sb)) {
-                alert('server already in neighbours');
+                alert('servers already connected');
                 return;
             }
             sb.setNeighbours({
@@ -100,9 +97,6 @@ newServerForm.addEventListener("submit", e => {
     }
 });
 
-// handle select neighbours event
-var neighboursList = []
-
 // handle delete server event
 deleteServerButton.addEventListener('click', () => {
     var server = serverList.filter(s => s.group._id == groupSelected._id)[0];
@@ -128,11 +122,9 @@ deleteServerButton.addEventListener('click', () => {
     groupSelected.destroy();
     // update the dom
     newServerForm.style.display = 'none';
-    addServerButton.textContent = "Add Server";
-    addServerButton.style.backgroundColor = "#5095ff";
 
     // handle create link button
-    if(serverList.length <= 1) {
+    if (serverList.length <= 1) {
         createLinkButton.style.display = 'none';
     }
 });
@@ -208,16 +200,12 @@ document.getElementById('pingURL').addEventListener('click', () => {
             layer.add(text_result);
         }
         newServerForm.style.display = 'none';
-        addServerButton.style.backgroundColor = '#5095ff';
-        addServerButton.textContent = 'Add Server';
-        addServerButton.style.display = 'none';
         document.getElementById('reset').style.display = 'block';
     }
 });
 
 // handle reset event
 document.getElementById('reset').addEventListener('click', () => {
-    addServerButton.style.display = 'block';
     document.getElementById('reset').style.display = 'none';
 
     edges.forEach(e => {
@@ -230,7 +218,6 @@ document.getElementById('reset').addEventListener('click', () => {
 
 // handle export pdf event
 document.getElementById('export').addEventListener('click', () => {
-    addServerButton.style.display = 'block';
 
     document.getElementById('reset').style.display = 'none';
     document.getElementById('export').style.display = 'none';

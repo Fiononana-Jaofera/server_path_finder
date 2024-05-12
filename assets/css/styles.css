@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
- }
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
     position: relative;
     padding: 0;
@@ -43,7 +45,8 @@ body {
 }
 
 /* Input Fields Styling */
-#newServerForm input, #newServerForm select {
+#newServerForm input,
+#newServerForm select {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -52,9 +55,10 @@ body {
     font-size: 16px;
 }
 
-#newServerForm select, #newServerForm #selectNeighbours {
+#newServerForm select {
     display: none;
 }
+
 #newServerForm #url {
     width: 78%;
 }
@@ -81,31 +85,37 @@ body {
     background-color: #ff0000;
     width: 49%;
 }
+
 #newServerForm #delete:hover {
     background-color: #bd0101;
 }
+
 #newServerForm #ping {
     width: 20%;
     background-color: rgb(0, 135, 0);
 }
+
 #newServerForm #ping:hover {
     background-color: rgb(0, 108, 0);
 }
 
 /* URL List Styling */
-#newServerForm #urlList, #newServerForm #neighboursList {
+#newServerForm #urlList,
+#newServerForm #neighboursList {
     list-style-type: none;
     padding: 0;
     margin-bottom: 20px;
 }
 
-#newServerForm #urlList li, #newServerForm #neighboursList li {
+#newServerForm #urlList li,
+#newServerForm #neighboursList li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
 }
 
-#newServerForm #urlList li:last-child, #newServerForm #neighboursList li:last-child {
+#newServerForm #urlList li:last-child,
+#newServerForm #neighboursList li:last-child {
     border-bottom: none;
 }
 
@@ -118,4 +128,32 @@ body {
 
 #newServerForm select {
     width: 69%;
+}
+
+/* Browser Styles */
+#browser {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    gap: 5px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: max-content;
+    cursor: move;
+    padding: 40px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+#browser #content {
+    border: black 0.5px solid;
+    height: 100px;
+    background-color: white;
+}
+
+#browser h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
 }

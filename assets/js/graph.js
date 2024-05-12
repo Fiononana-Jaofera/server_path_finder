@@ -18,6 +18,7 @@ layer.on('click', function (e) {
     var neighbours = [];
     if (element.attrs.name !== 'connector') {
         var server = serverList.filter(s => s.group._id == element.parent._id)[0];
+        document.getElementById('title').textContent = server.name;
         groupSelected = element.parent;
 
         document.getElementById('urlList').textContent = '';
@@ -34,9 +35,6 @@ layer.on('click', function (e) {
         deleteServerButton.style.display = 'inline';
 
         document.getElementById("name").readOnly = true;
-
-        addServerButton.textContent = (newServerForm.style.display === 'none') ? 'Add Server' : 'Cancel';
-        addServerButton.style.backgroundColor = (newServerForm.style.display === 'none') ? '#5095ff' : 'red';
 
         server.urlList.forEach(url => {
             var li = document.createElement('li');
