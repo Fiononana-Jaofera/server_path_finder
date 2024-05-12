@@ -3,7 +3,7 @@ var edges = [];
 var urlList = [];
 var newServerForm = document.getElementById("newServerForm");
 var addServerButton = document.getElementById('addServer');
-var deleteServerButton = document.getElementById('delete');
+// var deleteServerButton = document.getElementById('delete');
 var createLinkButton = document.getElementById('createLink');
 var saveButton = document.getElementById('save');
 
@@ -16,7 +16,7 @@ addServerButton.addEventListener('click', function (e) {
     newServerForm.style.display = 'block';
     document.getElementById('neighboursList').style.display = 'none';
     document.getElementById("name").readOnly = false;
-    deleteServerButton.style.display = 'none';
+    // deleteServerButton.style.display = 'none';
 });
 
 
@@ -24,7 +24,7 @@ addServerButton.addEventListener('click', function (e) {
 document.getElementById("addURLButton").addEventListener("click", e => {
     var url = document.getElementById("addURL").value;
     if (serverSelected) {
-        urlList = server.getUrlList();
+        urlList = serverSelected.getUrlList();
     }
     
     if (url.length > 0 && !urlList.includes(url)) {
@@ -93,37 +93,6 @@ newServerForm.addEventListener("submit", e => {
     }
 });
 
-// handle delete server event
-deleteServerButton.addEventListener('click', () => {
-    var server = serverList.filter(s => s.group._id == groupSelected._id)[0];
-
-    // delete the edge
-    if (edges.length > 0) {
-        edges.forEach(e => {
-            var idParts = e.attrs.id.split('-');
-            if (idParts[0] == server.name || idParts[1] == server.name) {
-                e.destroy();
-                edges = edges.filter(f => f !== e);
-            }
-        })
-    }
-
-    // delete from neighbours of each other server
-    serverList.forEach(s => {
-        s.removeFromNeighbours(server.name);
-        serverList = serverList.filter(f => f !== server);
-    });
-
-    // delete the node
-    groupSelected.destroy();
-    // update the dom
-    newServerForm.style.display = 'none';
-
-    // handle create link button
-    if (serverList.length <= 1) {
-        createLinkButton.style.display = 'none';
-    }
-});
 
 // handle navigate url event
 document.getElementById('navigate').addEventListener('click', () => {
