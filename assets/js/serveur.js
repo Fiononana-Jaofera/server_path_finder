@@ -63,6 +63,9 @@ class Server {
     getUrlList() {
         return this.urlList;
     }
+    setUrl(url) {
+        this.urlList.push(url);
+    }
 
     getNeighbours() {
         return this.neighbours;

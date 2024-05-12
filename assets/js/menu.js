@@ -14,9 +14,10 @@ document.getElementById('urllistbutton').addEventListener('click', () => {
     document.getElementById('delete').style.display = 'none';
     document.getElementById('save').style.display = 'none';
     document.getElementById('cancel').style.display = 'block';
+    document.getElementById('urlList').textContent = '';
 
     document.getElementById("name").value = serverSelected.name;
-    serverSelected.urlList.forEach(url => {
+    serverSelected.getUrlList().forEach(url => {
         var li = document.createElement('li');
         li.textContent = url;
         document.getElementById('urlList').appendChild(li);

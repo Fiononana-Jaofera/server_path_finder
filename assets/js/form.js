@@ -23,13 +23,10 @@ addServerButton.addEventListener('click', function (e) {
 // Event which handle Add URL button click
 document.getElementById("addURLButton").addEventListener("click", e => {
     var url = document.getElementById("addURL").value;
-    var name = document.getElementById("name").value;
-    if (name.length > 0) {
-        var server = serverList.find(s => s.name == name);
-        if (server) {
-            urlList = server.getUrlList();
-        }
+    if (serverSelected) {
+        urlList = server.getUrlList();
     }
+    
     if (url.length > 0 && !urlList.includes(url)) {
         var li = document.createElement('li');
         li.textContent = url;
