@@ -21,11 +21,6 @@
             <ul id="urlList"></ul>
         </div>
         <ul id="neighboursList"></ul>
-        <!-- <div style="display: none; justify-content: space-between; width: 100%;" id="pingURL">
-            <input type="text" id="url" placeholder="Add URL to ping...">
-            <button type="button" id="ping">ping</button>
-        </div> -->
-
         <div id="createLinkLabels" style="display: none;">
             <label for="betweenoption" style="display: block; font-weight: bold;">Between</label>
             <select id="betweenoption" style="display: block; width: 100%;"></select>
@@ -62,13 +57,22 @@
             Reset
         </button>
     </div>
-    <div id="browser">
+    <div id="serverMenu" style="display: none;">
+        <h2 id="menutitle" style="text-align: center;">Menu</h2>
+        <div id="servername"></div>
+        <button type="button" id="browserbutton">Browser</button>
+        <button type="button" id="urllistbutton">URL list</button>
+        <button type="button">Delete</button>
+        <button type="button">Cancel</button>
+    </div>
+    <div id="browser" style="display: none;">
         <h2 id="browserTitle">Browser</h2>
         <div style="display: flex; flex-direction: row; justify-content: stretch; gap: 5px;">
             <input type="text" id="url" placeholder="Enter the url...">
             <button type="button" id="navigate" style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(71, 68, 71);">Navigate</button>
         </div>
         <div id="content"></div>
+        <button type="button" id="exit">Exit</button>
     </div>
     <script src="modules/konva.js"></script>
     <script src="modules/jsPDF.js"></script>
@@ -77,6 +81,7 @@
     <script src="assets/js/serveur.js"></script>
     <script src="assets/js/browser.js"></script>
     <script src="assets/js/form.js"></script>
+    <script src="assets/js/menu.js"></script>
 </body>
 
 </html>

@@ -16,7 +16,6 @@ addServerButton.addEventListener('click', function (e) {
     newServerForm.style.display = 'block';
     document.getElementById('neighboursList').style.display = 'none';
     document.getElementById("name").readOnly = false;
-    document.getElementById('pingURL').style.display = 'none';
     deleteServerButton.style.display = 'none';
 });
 
@@ -129,14 +128,16 @@ deleteServerButton.addEventListener('click', () => {
     }
 });
 
-// handle ping url event
-document.getElementById('pingURL').addEventListener('click', () => {
+// handle navigate url event
+document.getElementById('navigate').addEventListener('click', () => {
     var text = stage.find('#result')[0];
     if (text != undefined) text.destroy();
+    
     var url = document.getElementById('url').value;
     if (url.length > 0) {
-        var name = document.getElementById('name').value;
-        var server_start = serverList.filter(s => s.name == name)[0];
+        // var name = document.getElementById('name').value;
+        // var server_start = serverList.filter(s => s.name == name)[0];
+        var server_start = serverSelected;
         var serverfound = serverList.filter(s => s.urlList.includes(url));
         if (serverfound.length > 0) {
             dijkstra(server_start);
@@ -252,4 +253,5 @@ createLinkButton.addEventListener('click', () => {
 
 document.getElementById('cancel').addEventListener('click', () => {
     newServerForm.style.display = 'none';
+    menu.style.display = 'flex';
 })
