@@ -60,4 +60,10 @@ document.getElementById('deletebutton').addEventListener('click', () => {
 document.getElementById('cancelbutton').addEventListener('click', () => {
     serverSelected = undefined;
     menu.style.display = 'none';
-})
+});
+
+document.getElementById('addappbutton').addEventListener('click', () => {
+    newServerForm.style.display = 'none';
+    menu.style.display = 'none';
+    document.getElementById('newappform').style.display = 'flex';
+});
