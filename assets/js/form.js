@@ -8,14 +8,18 @@ var saveButton = document.getElementById('save');
 
 // handle add server event
 addServerButton.addEventListener('click', function (e) {
+    urlList.length = 0;
     document.getElementById('name').value = '';
     document.getElementById('addURL').value = '';
     document.getElementById('urlList').textContent = '';
+    saveButton.style.display = 'block';
     saveButton.style.width = '100%';
     newServerForm.style.display = 'block';
     document.getElementById('createServer').style.display = 'block';
     document.getElementById('createLinkLabels').style.display = 'none';
     document.getElementById("name").readOnly = false;
+
+    document.getElementById('title').textContent = 'New Server';
 });
 
 // Event which handle Add URL button click
