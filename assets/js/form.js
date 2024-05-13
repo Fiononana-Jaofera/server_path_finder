@@ -3,22 +3,20 @@ var edges = [];
 var urlList = [];
 var newServerForm = document.getElementById("newServerForm");
 var addServerButton = document.getElementById('addServer');
-// var deleteServerButton = document.getElementById('delete');
 var createLinkButton = document.getElementById('createLink');
 var saveButton = document.getElementById('save');
 
-
+// handle add server event
 addServerButton.addEventListener('click', function (e) {
     document.getElementById('name').value = '';
     document.getElementById('addURL').value = '';
     document.getElementById('urlList').textContent = '';
     saveButton.style.width = '100%';
     newServerForm.style.display = 'block';
-    document.getElementById('neighboursList').style.display = 'none';
+    document.getElementById('createServer').style.display = 'block';
+    document.getElementById('createLinkLabels').style.display = 'none';
     document.getElementById("name").readOnly = false;
-    // deleteServerButton.style.display = 'none';
 });
-
 
 // Event which handle Add URL button click
 document.getElementById("addURLButton").addEventListener("click", e => {
@@ -33,6 +31,10 @@ document.getElementById("addURLButton").addEventListener("click", e => {
         document.getElementById('urlList').appendChild(li);
         document.getElementById('addURL').value = '';
         urlList.push(url);
+    }
+    else {
+        alert('url already exist');
+        console.log(urlList);
     }
 });
 
@@ -110,7 +112,6 @@ newServerForm.addEventListener("submit", e => {
         }
     }
 });
-
 
 // handle navigate url event
 document.getElementById('navigate').addEventListener('click', () => {
@@ -199,7 +200,7 @@ document.getElementById('reset').addEventListener('click', () => {
 
     var text = stage.find('#result')[0];
     if (text != undefined) text.destroy();
-})
+});
 
 // handle export pdf event
 document.getElementById('export').addEventListener('click', () => {
@@ -216,7 +217,7 @@ document.getElementById('export').addEventListener('click', () => {
     pdf.addImage(dataURL, 'PNG', 0, 0, width * 0.60, height * 0.75);
     pdf.save('KonvaStage.pdf');
     document.getElementById('reset').click();
-})
+});
 
 // handle create Link event
 createLinkButton.addEventListener('click', () => {
@@ -234,9 +235,9 @@ createLinkButton.addEventListener('click', () => {
         document.getElementById('betweenoption').appendChild(option_between);
         document.getElementById('andoption').appendChild(option_and);
     });
-})
+});
 
 document.getElementById('cancel').addEventListener('click', () => {
     newServerForm.style.display = 'none';
     menu.style.display = 'flex';
-})
+});

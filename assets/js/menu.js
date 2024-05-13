@@ -53,6 +53,8 @@ document.getElementById('deletebutton').addEventListener('click', () => {
     if (serverList.length <= 1) {
         createLinkButton.style.display = 'none';
     }
+
+    serverSelected = undefined;
 });
 
 document.getElementById('cancelbutton').addEventListener('click', () => {
