@@ -66,4 +66,6 @@ document.getElementById('addappbutton').addEventListener('click', () => {
     newServerForm.style.display = 'none';
     menu.style.display = 'none';
     document.getElementById('newappform').style.display = 'flex';
+    document.getElementById('urlnewapp').value = '';
+    document.getElementById('urlcontent').value = '';
 });

@@ -15,14 +15,15 @@ class Server {
         this.x = 0;
         this.y = 0;
         this.weight = Infinity;
+        this.applicationList = [];
     }
 
     display() {
         var group = this.group
-        
+
         var text = new Konva.Text({
-            x: width/3-12,
-            y: height/2+90,
+            x: width / 3 - 12,
+            y: height / 2 + 90,
             text: this.name,
             fontSize: 20,
             fontFamily: 'Calibri',
@@ -36,11 +37,11 @@ class Server {
 
         group.add(text);
 
-        Konva.Image.fromURL('https://fiononana-jaofera.github.io/server_path_finder/assets/images/server.png', function (image) {
+        Konva.Image.fromURL('assets/images/server.png', function (image) {
             group.add(image);
             image.setAttrs({
-                x: width/3,
-                y: height/2,
+                x: width / 3,
+                y: height / 2,
                 scaleX: 0.15,
                 scaleY: 0.15,
             });
@@ -87,5 +88,9 @@ class Server {
     removeFromNeighbours(neighbour_name) {
         var temp = this.neighbours.filter(n => n.server.name !== neighbour_name);
         this.neighbours = temp;
+    }
+
+    setApplication(app) {
+        this.applicationList.push(app);
     }
 }
