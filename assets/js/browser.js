@@ -10,7 +10,7 @@ document.getElementById('navigate').addEventListener('click', () => {
   var url = document.getElementById('url').value;
   if (url.length > 0) {
       var server_start = serverSelected;
-      var serverfound = serverList.filter(s => s.urlList.includes(url));
+      var serverfound = serverList.filter(s => s.applicationList.some(a => a.url == url));
       if (serverfound.length > 0) {
           dijkstra(server_start);
 

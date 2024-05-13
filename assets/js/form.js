@@ -1,6 +1,5 @@
 var serverList = [];
 var edges = [];
-var urlList = [];
 var newServerForm = document.getElementById("newServerForm");
 var addServerButton = document.getElementById('addServer');
 var createLinkButton = document.getElementById('createLink');
@@ -8,9 +7,7 @@ var saveButton = document.getElementById('save');
 
 // handle add server event
 addServerButton.addEventListener('click', function (e) {
-    urlList.length = 0;
     document.getElementById('name').value = '';
-    document.getElementById('addURL').value = '';
     document.getElementById('urlList').textContent = '';
     saveButton.style.display = 'block';
     saveButton.style.width = '100%';
@@ -24,34 +21,13 @@ addServerButton.addEventListener('click', function (e) {
     serverSelected = undefined;
 });
 
-// Event which handle Add URL button click
-document.getElementById("addURLButton").addEventListener("click", e => {
-    var url = document.getElementById("addURL").value;
-    if (serverSelected) {
-        urlList = serverSelected.getUrlList();
-    }
-    
-    if (url.length > 0 && !urlList.includes(url)) {
-        var li = document.createElement('li');
-        li.textContent = url;
-        document.getElementById('urlList').appendChild(li);
-        document.getElementById('addURL').value = '';
-        urlList.push(url);
-    }
-    else {
-        alert('url already exist');
-        console.log(urlList);
-    }
-});
-
 // Event handle form submit
 newServerForm.addEventListener("submit", e => {
     e.preventDefault();
     var name = document.getElementById("name").value;
-    if (name.length > 0 && urlList.length > 0 && !serverList.some(s => s.name == name)) {
-        var server = new Server(name, urlList);
+    if (name.length > 0 && !serverList.some(s => s.name == name)) {
+        var server = new Server(name);
         serverList.push(server);
-        urlList.length = 0;
 
         // update the dom
         document.getElementById('name').value = '';

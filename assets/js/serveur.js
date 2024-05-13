@@ -1,7 +1,6 @@
 class Server {
-    constructor(name, urlList) {
+    constructor(name) {
         this.name = name;
-        this.urlList = [...urlList];
         this.group = new Konva.Group({
             draggable: true,
             id: this.name,
@@ -59,13 +58,6 @@ class Server {
 
     setNeighbours(neighbour) {
         this.neighbours.push(neighbour);
-    }
-
-    getUrlList() {
-        return this.urlList;
-    }
-    setUrl(url) {
-        this.urlList.push(url);
     }
 
     getNeighbours() {

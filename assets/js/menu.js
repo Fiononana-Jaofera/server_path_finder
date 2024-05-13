@@ -16,11 +16,7 @@ document.getElementById('urllistbutton').addEventListener('click', () => {
     document.getElementById('urlList').textContent = '';
 
     document.getElementById("name").value = serverSelected.name;
-    // serverSelected.getUrlList().forEach(url => {
-    //     var li = document.createElement('li');
-    //     li.textContent = url;
-    //     document.getElementById('urlList').appendChild(li);
-    // });
+    
     serverSelected.applicationList.forEach(a => {
         var li = document.createElement('li');
         li.textContent = a.url;
