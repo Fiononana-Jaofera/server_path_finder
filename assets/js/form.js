@@ -64,7 +64,7 @@ newServerForm.addEventListener("submit", e => {
         if (between !== and && weight.length > 0) {
             var sb = serverList.find(n => n.name == between);
             var sa = serverList.find(n => n.name == and);
-            if (sa.getNeighbours().some(s => s.server = sb)) {
+            if (sa.getNeighbours().some(s => s.server == sb)) {
                 alert('servers already connected');
                 return;
             }
@@ -206,6 +206,8 @@ createLinkButton.addEventListener('click', () => {
     document.getElementById('title').textContent = 'Create link';
     document.getElementById('createServer').style.display = 'none';
     document.getElementById('createLinkLabels').style.display = 'block';
+    document.getElementById('betweenoption').textContent = '';
+    document.getElementById('andoption').textContent = '';
     serverList.forEach(s => {
         var option_between = document.createElement('option');
         var option_and = document.createElement('option');
@@ -214,7 +216,6 @@ createLinkButton.addEventListener('click', () => {
         document.getElementById('betweenoption').appendChild(option_between);
         document.getElementById('andoption').appendChild(option_and);
     });
-    document.getElementById("name").textContent = '';
 })
 
 document.getElementById('cancel').addEventListener('click', () => {

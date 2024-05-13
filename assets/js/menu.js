@@ -21,7 +21,7 @@ document.getElementById('urllistbutton').addEventListener('click', () => {
         li.textContent = url;
         document.getElementById('urlList').appendChild(li);
     });
-})
+});
 
 document.getElementById('deletebutton').addEventListener('click', () => {
     // delete the edge
@@ -50,4 +50,9 @@ document.getElementById('deletebutton').addEventListener('click', () => {
     if (serverList.length <= 1) {
         createLinkButton.style.display = 'none';
     }
+});
+
+document.getElementById('cancelbutton').addEventListener('click', () => {
+    serverSelected = undefined;
+    menu.style.display = 'none';
 })
