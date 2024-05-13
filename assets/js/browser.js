@@ -32,7 +32,7 @@ document.getElementById('navigate').addEventListener('click', () => {
                   line.stroke('green');
                   layer.batchDraw();
               }
-              document.getElementById('content').textContent = server_end.getContent(url);
+              document.getElementById('content').innerHTML = server_end.getContent(url);
 
           }
       }
