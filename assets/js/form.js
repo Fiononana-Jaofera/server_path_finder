@@ -7,6 +7,7 @@ var saveButton = document.getElementById('save');
 
 // handle add server event
 addServerButton.addEventListener('click', function (e) {
+    document.getElementById('name').style.display = 'block';
     document.getElementById('name').value = '';
     document.getElementById('urlList').textContent = '';
     saveButton.style.display = 'block';
@@ -145,4 +146,6 @@ createLinkButton.addEventListener('click', () => {
 document.getElementById('cancel').addEventListener('click', () => {
     newServerForm.style.display = 'none';
     if (serverSelected) menu.style.display = 'flex';
+    document.getElementById('urlList').style.display = 'none';
+    document.getElementById('name').style.display = 'block';
 });

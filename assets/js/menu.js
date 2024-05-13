@@ -6,15 +6,16 @@ document.getElementById('browserbutton').addEventListener('click', () => {
     document.getElementById('url').value = '';
 });
 
-document.getElementById('urllistbutton').addEventListener('click', () => {
+document.getElementById('applicationlistbutton').addEventListener('click', () => {
     newServerForm.style.display = 'flex';
     menu.style.display = 'none';
     document.getElementById('title').textContent = 'URL list';
     document.getElementById('createServer').style.display = 'block';
-    document.getElementById("name").readOnly = true;
+    document.getElementById("name").style.display = 'none';
     document.getElementById('createLinkLabels').style.display = 'none';
     document.getElementById('save').style.display = 'none';
     document.getElementById('cancel').style.display = 'block';
+    document.getElementById('urlList').style.display = 'block';
     document.getElementById('urlList').textContent = '';
 
     document.getElementById("name").value = serverSelected.name;
