@@ -78,15 +78,33 @@ newServerForm.addEventListener("submit", e => {
                 weight: Number(weight),
             })
 
+            //coordinates
+            var sbx = sb.getX() + 45 + width / 3;
+            var sby = sb.getY() + height / 2 - 10;
+            var sax = sa.getX() + 45 + width / 3;
+            var say = sa.getY() + height / 2 - 10
             // create connector
             var line = new Konva.Line({
                 stroke: 'black',
-                points: [sb.getX() + 45 + width / 3, sb.getY() + height / 2 - 10, sa.getX() + 45 + width / 3, sa.getY() + height / 2 - 10],
+                points: [sbx, sby, sax, say],
                 id: sb.name + '-' + sa.name,
                 name: 'connector'
             });
             layer.add(line);
             edges.push(line);
+
+            // display weight
+            var label = new Konva.Text({
+                id: sb.name + '-' + sa.name + '-weight',
+                x: (sbx + sax) / 2,
+                y: (sby + say) / 2,
+                text: weight,
+                fontSize: 20,
+                fontFamily: 'Calibri',
+                fill: 'black',
+                fontStyle: 'bold',
+            });
+            layer.add(label);
 
             newServerForm.style.display = 'none';
         }
