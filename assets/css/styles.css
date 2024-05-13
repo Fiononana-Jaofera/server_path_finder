@@ -46,8 +46,9 @@ body {
 }
 
 /* Input Fields Styling */
-#newServerForm input,
+#newServerForm input, #newappform input, #newappform textarea, 
 #newServerForm select {
+    display: block;
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -65,7 +66,7 @@ body {
 }
 
 /* Button Styling */
-#newServerForm button {
+#newServerForm button, #newappform button {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -78,36 +79,24 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#newServerForm button:hover {
+#newServerForm button:hover, #newappform button:hover {
     background-color: #0056b3;
 }
 
-#newServerForm #ping {
-    width: 20%;
-    background-color: rgb(0, 135, 0);
-}
-
-#newServerForm #ping:hover {
-    background-color: rgb(0, 108, 0);
-}
-
 /* URL List Styling */
-#newServerForm #urlList,
-#newServerForm #neighboursList {
+#newServerForm #urlList {
     list-style-type: none;
     padding: 0;
     margin-bottom: 20px;
 }
 
-#newServerForm #urlList li,
-#newServerForm #neighboursList li {
+#newServerForm #urlList li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
 }
 
-#newServerForm #urlList li:last-child,
-#newServerForm #neighboursList li:last-child {
+#newServerForm #urlList li:last-child {
     border-bottom: none;
 }
 
@@ -123,7 +112,7 @@ body {
 }
 
 /* Browser and Server menu Styles */
-#browser, #serverMenu {
+#browser, #serverMenu, #newappform {
     flex-direction: column;
     justify-content: center;
     gap: 5px;
@@ -136,6 +125,7 @@ body {
     padding: 40px;
     background-color: #f9f9f9;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
 }
 
 

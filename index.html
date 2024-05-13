@@ -59,6 +59,7 @@
         <h2 id="menutitle" style="text-align: center;">Menu</h2>
         <div id="servername"></div>
         <button type="button" id="browserbutton">Browser</button>
+        <button type="button" id="addappbutton">Add application</button>
         <button type="button" id="urllistbutton">URL list</button>
         <button type="button" id="deletebutton">Delete</button>
         <button type="button" id="cancelbutton">Cancel</button>
@@ -71,6 +72,12 @@
         </div>
         <div id="content"></div>
         <button type="button" id="exit">Exit</button>
+    </div>
+    <div id="newappform" style="display: flex;">
+        <h2 style="text-align: center;">New application</h2>
+        <input type="url" placeholder="Enter URL...">
+        <textarea rows="10" placeholder="Content..."></textarea>
+        <button type="button" style="display: block;">Save</button>
     </div>
     <script src="modules/konva.js"></script>
     <script src="modules/jsPDF.js"></script>

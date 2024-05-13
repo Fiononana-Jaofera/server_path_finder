@@ -9,8 +9,6 @@ document.getElementById('navigate').addEventListener('click', () => {
   
   var url = document.getElementById('url').value;
   if (url.length > 0) {
-      // var name = document.getElementById('name').value;
-      // var server_start = serverList.filter(s => s.name == name)[0];
       var server_start = serverSelected;
       var serverfound = serverList.filter(s => s.urlList.includes(url));
       if (serverfound.length > 0) {
@@ -83,4 +81,4 @@ document.getElementById('navigate').addEventListener('click', () => {
 document.getElementById('exit').addEventListener('click', () => {
   browser.style.display = 'none';
   menu.style.display = 'flex';
-})
+});
