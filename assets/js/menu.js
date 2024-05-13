@@ -29,6 +29,9 @@ document.getElementById('deletebutton').addEventListener('click', () => {
         edges.forEach(e => {
             var idParts = e.attrs.id.split('-');
             if (idParts[0] == serverSelected.name || idParts[1] == serverSelected.name) {
+                var label_element = layer.findOne('#' + e.attrs.id + '-weight');
+                label_element.destroy();
+
                 e.destroy();
                 edges = edges.filter(f => f !== e);
             }
