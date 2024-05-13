@@ -5,7 +5,7 @@ document.getElementById('browserbutton').addEventListener('click', () => {
 });
 
 document.getElementById('urllistbutton').addEventListener('click', () => {
-    newServerForm.style.display = 'block';
+    newServerForm.style.display = 'flex';
     menu.style.display = 'none';
     document.getElementById('title').textContent = 'URL list';
     document.getElementById('createServer').style.display = 'block';
