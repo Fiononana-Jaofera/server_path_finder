@@ -32,45 +32,12 @@ document.getElementById('navigate').addEventListener('click', () => {
                   line.stroke('green');
                   layer.batchDraw();
               }
+              document.getElementById('content').textContent = server_end.getContent(url);
 
-              var text_result = new Konva.Text({
-                  id: 'result',
-                  x: width / 2,
-                  y: height - 40,
-                  text: `ping from ${result[0]} to ${url} take ${server_end.weight}ms.`,
-                  fontSize: 20,
-                  fontFamily: 'Calibri',
-                  fill: 'black',
-                  fontStyle: 'bold',
-              });
-              layer.add(text_result);
-          }
-          else {
-              var text_result = new Konva.Text({
-                  id: 'result',
-                  x: width / 2,
-                  y: height - 40,
-                  text: `no path found to ping ${url} from ${server_start.name}`,
-                  fontSize: 20,
-                  fontFamily: 'Calibri',
-                  fill: 'black',
-                  fontStyle: 'bold',
-              });
-              layer.add(text_result);
           }
       }
       else {
-          var text_result = new Konva.Text({
-              id: 'result',
-              x: width / 2,
-              y: height - 40,
-              text: `server which contain ${url} url doesn't exist`,
-              fontSize: 20,
-              fontFamily: 'Calibri',
-              fill: 'black',
-              fontStyle: 'bold',
-          });
-          layer.add(text_result);
+        document.getElementById('content').textContent = '404 not found! :(';
       }
       newServerForm.style.display = 'none';
       document.getElementById('reset').style.display = 'block';

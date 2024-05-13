@@ -2,6 +2,8 @@ document.getElementById('browserbutton').addEventListener('click', () => {
     browser.style.display = 'flex';
     document.getElementById('browserTitle').textContent = serverSelected.name + ' browser';
     menu.style.display = 'none';
+    document.getElementById('content').textContent = '';
+    document.getElementById('url').value = '';
 });
 
 document.getElementById('urllistbutton').addEventListener('click', () => {

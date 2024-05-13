@@ -85,4 +85,9 @@ class Server {
     setApplication(app) {
         this.applicationList.push(app);
     }
+
+    getContent(url) {
+        var app = this.applicationList.find(a => a.url == url);
+        return app.content;
+    }
 }
