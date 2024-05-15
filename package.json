@@ -1,0 +1,11 @@
+{
+  "name": "Serveur",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/Fiononana-Jaofera/Server_path_finder.git",
+  "author": "<fiononana.andriatsalama@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

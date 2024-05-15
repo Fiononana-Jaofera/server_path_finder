@@ -134,6 +134,7 @@ body {
     border: black 0.5px solid;
     height: 100px;
     background-color: white;
+    padding: 5px;
 }
 
 #browser h2 {

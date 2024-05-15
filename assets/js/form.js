@@ -102,10 +102,9 @@ document.getElementById('reset').addEventListener('click', () => {
 
     edges.forEach(e => {
         e.stroke('black');
-    })
+    });
 
-    var text = stage.find('#result')[0];
-    if (text != undefined) text.destroy();
+    browser.style.display = 'none';
 });
 
 // handle export pdf event
@@ -133,6 +132,7 @@ createLinkButton.addEventListener('click', () => {
     document.getElementById('createLinkLabels').style.display = 'block';
     document.getElementById('betweenoption').textContent = '';
     document.getElementById('andoption').textContent = '';
+    document.getElementById('time').value = '';
     serverList.forEach(s => {
         var option_between = document.createElement('option');
         var option_and = document.createElement('option');
