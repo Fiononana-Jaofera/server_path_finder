@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 class Server {
     constructor(name) {
         this.name = name;
@@ -15,6 +16,11 @@ class Server {
         this.y = 0;
         this.weight = Infinity;
         this.applicationList = [];
+        this.socket = io("http://localhost:3000");
+        this.id = 0;
+        this.socket.on('connect', () => {
+            this.id = this.socket.id;
+        })
     }
 
     display() {
@@ -91,3 +97,5 @@ class Server {
         return app.content;
     }
 }
+
+window.Server = Server;

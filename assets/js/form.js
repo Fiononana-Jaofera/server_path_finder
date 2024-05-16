@@ -27,9 +27,8 @@ newServerForm.addEventListener("submit", e => {
     e.preventDefault();
     var name = document.getElementById("name").value;
     if (name.length > 0 && !serverList.some(s => s.name == name)) {
-        var server = new Server(name);
+        var server = new window.Server(name);
         serverList.push(server);
-
         // update the dom
         document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';

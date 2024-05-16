@@ -24,6 +24,7 @@ document.getElementById('navigate').addEventListener('click', () => {
 
           // update the dom
           if (result.length > 0) {
+
               for (var i = 0; i < result.length - 1; i++) {
                   var j = i + 1;
                   var from = result[i];
@@ -32,8 +33,10 @@ document.getElementById('navigate').addEventListener('click', () => {
                   line.stroke('green');
                   layer.batchDraw();
               }
-              document.getElementById('content').innerHTML = server_end.getContent(url);
+              
+              
 
+              document.getElementById('content').innerHTML = server_end.getContent(url);
           }
       }
       else {
