@@ -29,6 +29,10 @@ class Server {
             if (this.applicationList.length > 0 && this.applicationList.some(a => a.url == url)) {
                 console.log('application found!')
             }
+            else {
+                var next_server_idx = path.indexOf(this.id) + 1;
+                this.socket.emit('request', path, this.id, path[next_server_idx], url);
+            }
         })
     }
 
