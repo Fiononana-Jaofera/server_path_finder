@@ -30,10 +30,8 @@ class Server {
             console.log('url ' + url);
             console.log('path ' + path);
             if (this.applicationList.length > 0 && this.applicationList.some(a => a.url == url)) {
-                console.log('application found!');
-                var application = this.applicationList.find(a => a.url == url);
                 var prev_server_idx = path.indexOf(this.id) - 1;
-                this.socket.emit('response', path, application.content, this.id, path[prev_server_idx]);
+                this.socket.emit('response', path, this.getContent(url), this.id, path[prev_server_idx]);
             }
             else {
                 var next_server_idx = path.indexOf(this.id) + 1;
@@ -95,10 +93,6 @@ class Server {
 
     setNeighbours(neighbour) {
         this.neighbours.push(neighbour);
-    }
-
-    getNeighbours() {
-        return this.neighbours;
     }
 
     removeFromNeighbours(neighbour_name) {

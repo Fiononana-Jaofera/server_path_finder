@@ -6,7 +6,7 @@ function dijkstra(node_start) {
         var node = in_progress.reduce((prev, curr) => {
             return (prev.weight < curr.weight) ? prev : curr;
         }, in_progress[0]);
-        node.getNeighbours().forEach(neighbour => {
+        node.neighbours.forEach(neighbour => {
             if (neighbour.server.weight > neighbour.weight + node.weight) {
                 neighbour.server.weight = neighbour.weight + node.weight;
                 neighbour.server.pred = node;

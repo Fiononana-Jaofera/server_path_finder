@@ -48,7 +48,7 @@ newServerForm.addEventListener("submit", e => {
         if (between !== and && weight.length > 0) {
             var sb = serverList.find(n => n.name == between);
             var sa = serverList.find(n => n.name == and);
-            if (sa.getNeighbours().some(s => s.server == sb)) {
+            if (sa.neighbours.some(s => s.server == sb)) {
                 alert('servers already connected');
                 return;
             }
@@ -142,6 +142,7 @@ createLinkButton.addEventListener('click', () => {
         document.getElementById('andoption').appendChild(option_and);
     });
 });
+
 
 document.getElementById('cancel').addEventListener('click', () => {
     newServerForm.style.display = 'none';
