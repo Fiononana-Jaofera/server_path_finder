@@ -12,9 +12,9 @@
     <div id="container">
     </div>
     <form id="newServerForm" style="display: none;">
-        <h2 style="text-align: center;" id="title">Server</h2>
+        <h2 id="title">Server</h2>
         <div id="createServer">
-            <input type="text" id="name" placeholder="Enter name...">
+            <input type="text" id="name" placeholder="IP ADDRESS...">
             <ul id="urlList" style="display: none;"></ul>
         </div>
         <div id="createLinkLabels" style="display: none;">
@@ -26,10 +26,10 @@
             <input type="number" id="time" min=0 placeholder="duration ms" style="display: block; width: 100%;">
         </div>
 
-        <div style="display: flex; justify-content: space-between;">
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
             <button type="submit" id="save">Save</button>
+            <button type="button" id="cancel">Cancel</button>
         </div>
-        <button type="button" id="cancel">Cancel</button>
     </form>
     <div
         style="position: fixed; bottom: 40px; left: 40px; margin: 0; padding: 0; display: flex; gap: 10px; justify-content: space-around;">
@@ -54,12 +54,12 @@
     </div>
     <div id="serverMenu" style="display: none;">
         <h2 id="menutitle" style="text-align: center;">Menu</h2>
-        <div id="servername"></div>
         <button type="button" id="browserbutton">Browser</button>
         <button type="button" id="addappbutton">Add application</button>
         <button type="button" id="applicationlistbutton">Application List</button>
-        <button type="button" id="deletebutton">Delete</button>
+        <button type="button" id="deletebutton">Delete the server</button>
         <button type="button" id="cancelbutton">Cancel</button>
+        <div id="servername"></div>
     </div>
     <div id="browser" style="display: none;">
         <h2 id="browserTitle">Browser</h2>

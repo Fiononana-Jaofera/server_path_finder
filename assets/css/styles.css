@@ -30,19 +30,17 @@ body {
     width: 100%;
     height: 93.5%;
     display: none;
-    max-width: 500px;
+    max-width: 300px;
     margin: 0 auto;
     padding: 40px;
-    background-color: #f9f9f9;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    border-left: solid 1px #007bff;
     overflow-x: hidden;
 }
 
 /* Heading Styling */
-#newServerForm h2 {
-    margin-bottom: 20px;
+h2 {
     color: #333;
-    font-size: 24px;
+    font-size: 12px;
 }
 
 /* Input Fields Styling */
@@ -54,7 +52,7 @@ body {
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 #newServerForm select {
@@ -70,17 +68,29 @@ body {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    color: #fff;
-    border: none;
-    background-color: #007bff;
+    color: #007bff;
+    font-weight: bold;
+    border: solid 2px #007bff;
     border-radius: 4px;
+    background-color: white;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 10px;
+    transition: background-color color 0.3s ease;
+}
+
+#newServerForm #cancel {
+    color: red;
+    border: solid 2px red;
 }
 
 #newServerForm button:hover, #newappform button:hover {
     background-color: #0056b3;
+    color: white;
+}
+
+#newServerForm #cancel:hover {
+    background-color: red;
+    color: white;
 }
 
 /* URL List Styling */
@@ -115,16 +125,15 @@ body {
 #browser, #serverMenu, #newappform {
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
     position: absolute;
     top: 20px;
     right: 20px;
     width: 100%;
     height: 93.5%;
-    max-width: 500px;
+    max-width: 300px;
     padding: 40px;
-    background-color: #f9f9f9;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    border-left: solid #0056b3 1px;
+    background-color: white;
     overflow-x: hidden;
 }
 
@@ -143,7 +152,7 @@ body {
     font-size: 16px;
 }
 
-#serverMenu button, #exit {
+#exit {
     width: 100%;
     padding: 10px;
     color: #fff;
@@ -152,11 +161,33 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
 }
 
-#serverMenu button:hover, #exit:hover {
+#serverMenu button {
+    width: 100%;
+    padding: 10px;
+    color: #0056b3;
+    font-weight: bold;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color color 0.3s ease;
+}
+
+#serverMenu button:hover {
     background-color: #0056b3;
+    color: white;
+}
+
+#servername {
+    margin-top: 30px;
+    font-size: 12px;
+}
+
+#menutitle {
+    margin-bottom: 30px;
 }
 
 #servername {

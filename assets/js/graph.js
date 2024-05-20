@@ -18,7 +18,7 @@ layer.on('click', function (e) {
     var element = e.target;
     if (element.attrs.name !== 'connector') {
         serverSelected = serverList.filter(s => s.group._id == element.parent._id)[0];
-        document.getElementById('servername').innerHTML = 'Server name: <strong>' + serverSelected.name + '</strong>';
+        document.getElementById('servername').innerHTML = 'IP ADDRESS: <strong>' + serverSelected.name + '</strong>';
         groupSelected = element.parent;
         document.getElementById("serverMenu").style.display = 'flex';
         newServerForm.style.display = 'none';
