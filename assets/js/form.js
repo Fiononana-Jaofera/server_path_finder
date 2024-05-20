@@ -63,10 +63,10 @@ newServerForm.addEventListener("submit", e => {
             })
 
             //coordinates
-            var sbx = sb.getX() + 45 + width / 3;
-            var sby = sb.getY() + height / 2 - 10;
-            var sax = sa.getX() + 45 + width / 3;
-            var say = sa.getY() + height / 2 - 10
+            var sbx = sb.x + 45 + width / 3;
+            var sby = sb.y + height / 2 - 10;
+            var sax = sa.x + 45 + width / 3;
+            var say = sa.y + height / 2 - 10
             // create connector
             var line = new Konva.Line({
                 stroke: 'black',
@@ -126,6 +126,7 @@ document.getElementById('export').addEventListener('click', () => {
 // handle create Link event
 createLinkButton.addEventListener('click', () => {
     newServerForm.style.display = 'flex';
+    saveButton.style.display = 'block';
     document.getElementById('title').textContent = 'Create link';
     document.getElementById('createServer').style.display = 'none';
     document.getElementById('createLinkLabels').style.display = 'block';

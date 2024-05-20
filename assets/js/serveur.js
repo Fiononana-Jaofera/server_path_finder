@@ -16,8 +16,11 @@ class Server {
         this.y = 0;
         this.weight = Infinity;
         this.applicationList = [];
+
+        // create socket
         this.socket = io("http://localhost:3000");
         this.id = 0;
+        // handle socket event
         this.socket.on('connect', () => {
             this.id = this.socket.id;
         });
@@ -96,19 +99,6 @@ class Server {
 
     getNeighbours() {
         return this.neighbours;
-    }
-
-    getX() {
-        return this.x;
-    }
-    getY() {
-        return this.y;
-    }
-    setX(x) {
-        this.x = x;
-    }
-    setY(y) {
-        this.y = y;
     }
 
     removeFromNeighbours(neighbour_name) {
