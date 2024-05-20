@@ -27,16 +27,16 @@ document.getElementById('navigate').addEventListener('click', () => {
 
               for (var i = 0; i < result.length - 1; i++) {
                   var j = i + 1;
-                  var from = result[i];
-                  var to = result[j];
+                  var from = result[i].name;
+                  var to = result[j].name;
                   var line = edges.find(e => e.attrs.id == from + '-' + to || e.attrs.id == to + '-' + from);
                   line.stroke('green');
                   layer.batchDraw();
               }
+              var id_list = result.map(r => r.id);
+              result[0].socket.emit('request', id_list, /*from*/ result[0].id, /*to*/ result[1].id, url);
               
-              
-
-              document.getElementById('content').innerHTML = server_end.getContent(url);
+              // document.getElementById('content').innerHTML = server_end.getContent(url);
           }
       }
       else {

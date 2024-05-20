@@ -21,6 +21,15 @@ class Server {
         this.socket.on('connect', () => {
             this.id = this.socket.id;
         })
+        this.socket.on('send-request', (from, url, path) => {
+            console.log(`server ${this.name} receive an request`);
+            console.log('request from ' + from);
+            console.log('url ' + url);
+            console.log('path ' + path);
+            if (this.applicationList.length > 0 && this.applicationList.some(a => a.url == url)) {
+                console.log('application found!')
+            }
+        })
     }
 
     display() {
