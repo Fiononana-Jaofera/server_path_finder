@@ -34,9 +34,7 @@ document.getElementById('navigate').addEventListener('click', () => {
                   layer.batchDraw();
               }
               var id_list = result.map(r => r.id);
-              result[0].socket.emit('request', id_list, /*from*/ result[0].id, /*to*/ result[1].id, url);
-              
-              // document.getElementById('content').innerHTML = server_end.getContent(url);
+              result[0].socket.emit('request', id_list, result[0].id, result[1].id, url);
           }
       }
       else {

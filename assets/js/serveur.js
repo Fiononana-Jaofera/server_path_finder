@@ -20,18 +20,33 @@ class Server {
         this.id = 0;
         this.socket.on('connect', () => {
             this.id = this.socket.id;
-        })
+        });
         this.socket.on('send-request', (from, url, path) => {
             console.log(`server ${this.name} receive an request`);
             console.log('request from ' + from);
             console.log('url ' + url);
             console.log('path ' + path);
             if (this.applicationList.length > 0 && this.applicationList.some(a => a.url == url)) {
-                console.log('application found!')
+                console.log('application found!');
+                var application = this.applicationList.find(a => a.url == url);
+                var prev_server_idx = path.indexOf(this.id) - 1;
+                this.socket.emit('response', path, application.content, this.id, path[prev_server_idx]);
             }
             else {
                 var next_server_idx = path.indexOf(this.id) + 1;
                 this.socket.emit('request', path, this.id, path[next_server_idx], url);
+            }
+        });
+        this.socket.on('send-response', (path, content, from) => {
+            console.log(`server ${this.name} receive an response`);
+            console.log('response from ' + from);
+            console.log('path ' + path);
+            if(path[0] == this.id) {
+                document.getElementById('content').innerHTML = content;
+            }
+            else {
+                var prev_server_idx = path.indexOf(this.id) - 1;
+                this.socket.emit('response', path, content, this.id, path[prev_server_idx]);
             }
         })
     }
