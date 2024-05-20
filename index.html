@@ -14,7 +14,10 @@
     <form id="newServerForm" style="display: none;">
         <h2 id="title">Server</h2>
         <div id="createServer">
-            <input type="text" id="name" placeholder="IP ADDRESS...">
+            <label style="font-size: 10px;">IP ADDRESS:</label>
+            <div id="name" style="display: flex; align-items: center;">
+                <input type="number" id="name_part_1" min="0" max="255">.<input type="number" id="name_part_2" min="0" max="255">.<input type="number" id="name_part_3" min="0" max="255">.<input type="number" id="name_part_4" min="0" max="255">
+            </div>
             <ul id="urlList" style="display: none;"></ul>
         </div>
         <div id="createLinkLabels" style="display: none;">

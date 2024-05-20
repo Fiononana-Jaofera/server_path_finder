@@ -7,15 +7,20 @@ var saveButton = document.getElementById('save');
 
 // handle add server event
 addServerButton.addEventListener('click', function (e) {
-    document.getElementById('name').style.display = 'block';
-    document.getElementById('name').value = '';
+    document.getElementById('name_part_1').value = 0;
+    document.getElementById('name_part_2').value = 0;
+    document.getElementById('name_part_3').value = 0;
+    document.getElementById('name_part_4').value = 0;
     document.getElementById('urlList').textContent = '';
     saveButton.style.display = 'block';
     saveButton.style.width = '100%';
     newServerForm.style.display = 'flex';
     document.getElementById('createServer').style.display = 'block';
     document.getElementById('createLinkLabels').style.display = 'none';
-    document.getElementById("name").readOnly = false;
+    document.getElementById("name_part_1").readOnly = false;
+    document.getElementById("name_part_2").readOnly = false;
+    document.getElementById("name_part_3").readOnly = false;
+    document.getElementById("name_part_4").readOnly = false;
 
     document.getElementById('title').textContent = 'New Server';
     menu.style.display = 'none';
@@ -25,12 +30,16 @@ addServerButton.addEventListener('click', function (e) {
 // Event handle form submit
 newServerForm.addEventListener("submit", e => {
     e.preventDefault();
-    var name = document.getElementById("name").value;
-    if (name.length > 0 && !serverList.some(s => s.name == name)) {
+    var part_1 = document.getElementById("name_part_1").value;
+    var part_2 = document.getElementById("name_part_2").value;
+    var part_3 = document.getElementById("name_part_3").value;
+    var part_4 = document.getElementById("name_part_4").value;
+    var name = `${part_1}.${part_2}.${part_3}.${part_4}`;
+
+    if (!serverList.some(s => s.name == name)) {
         var server = new window.Server(name);
         serverList.push(server);
         // update the dom
-        document.getElementById('name').value = '';
         document.getElementById('urlList').textContent = '';
         newServerForm.style.display = 'none';
         server.display();
@@ -148,5 +157,4 @@ document.getElementById('cancel').addEventListener('click', () => {
     newServerForm.style.display = 'none';
     if (serverSelected) menu.style.display = 'flex';
     document.getElementById('urlList').style.display = 'none';
-    document.getElementById('name').style.display = 'block';
 });
