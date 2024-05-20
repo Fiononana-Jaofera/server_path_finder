@@ -31,6 +31,7 @@ document.getElementById('navigate').addEventListener('click', () => {
                   var to = result[j].name;
                   var line = edges.find(e => e.attrs.id == from + '-' + to || e.attrs.id == to + '-' + from);
                   line.stroke('green');
+                  line.strokeWidth(1);
                   layer.batchDraw();
               }
               var id_list = result.map(r => r.id);

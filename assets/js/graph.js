@@ -36,9 +36,9 @@ function updateConnector(s) {
         if (idParts[0] == q.name || idParts[1] == q.name) {
             var s = serverList.find(t => t.name == idParts[0]);
             var sn = serverList.find(t => t.name == idParts[1]);
-            var sx = s.x + 45 + width/3;
+            var sx = s.x + 30 + width/3;
             var sy = s.y + height/2 - 10;
-            var snx = sn.x + 45 + width/3;
+            var snx = sn.x + 30 + width/3;
             var sny = sn.y + height/2 - 10;
             e.points([ sx, sy, snx, sny]);
             var label_element = layer.findOne('#' + e.attrs.id + '-weight');

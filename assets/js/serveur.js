@@ -56,17 +56,18 @@ class Server {
         var group = this.group
 
         var text = new Konva.Text({
-            x: width / 3 - 12,
-            y: height / 2 + 90,
+            x: width / 3 - 35,
+            y: height / 2 + 60,
             text: this.name,
-            fontSize: 20,
-            fontFamily: 'Calibri',
+            fontSize: 12,
+            fontFamily: 'Arial',
             fill: 'black',
             padding: 0,
-            width: 100,
+            width: 120,
             height: 30,
             align: 'center',
-            valign: 'middle'
+            valign: 'middle',
+            fontStyle: 'bold',
         });
 
         group.add(text);
@@ -76,8 +77,8 @@ class Server {
             image.setAttrs({
                 x: width / 3,
                 y: height / 2,
-                scaleX: 0.15,
-                scaleY: 0.15,
+                scaleX: 0.10,
+                scaleY: 0.10,
             });
             image.cache();
         });

@@ -72,16 +72,17 @@ newServerForm.addEventListener("submit", e => {
             })
 
             //coordinates
-            var sbx = sb.x + 45 + width / 3;
+            var sbx = sb.x + 30 + width / 3;
             var sby = sb.y + height / 2 - 10;
-            var sax = sa.x + 45 + width / 3;
+            var sax = sa.x + 30 + width / 3;
             var say = sa.y + height / 2 - 10
             // create connector
             var line = new Konva.Line({
                 stroke: 'black',
                 points: [sbx, sby, sax, say],
                 id: sb.name + '-' + sa.name,
-                name: 'connector'
+                name: 'connector',
+                strokeWidth: 0.1,
             });
             layer.add(line);
             edges.push(line);
@@ -91,11 +92,10 @@ newServerForm.addEventListener("submit", e => {
                 id: sb.name + '-' + sa.name + '-weight',
                 x: (sbx + sax) / 2,
                 y: (sby + say) / 2,
-                text: weight,
-                fontSize: 20,
-                fontFamily: 'Calibri',
+                text: weight+' ms',
+                fontSize: 12,
+                fontFamily: 'Arial',
                 fill: 'black',
-                fontStyle: 'bold',
             });
             layer.add(label);
 
@@ -110,6 +110,7 @@ document.getElementById('reset').addEventListener('click', () => {
 
     edges.forEach(e => {
         e.stroke('black');
+        e.strokeWidth(0.1);
     });
 
     browser.style.display = 'none';
