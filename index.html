@@ -13,19 +13,23 @@
     </div>
     <form id="newServerForm" style="display: none;">
         <h2 id="title">Server</h2>
-        <div id="createServer">
-            <label style="font-size: 10px;">IP ADDRESS:</label>
-            <div id="name" style="display: flex; align-items: center;">
-                <input type="number" id="name_part_1" min="0" max="255">.<input type="number" id="name_part_2" min="0" max="255">.<input type="number" id="name_part_3" min="0" max="255">.<input type="number" id="name_part_4" min="0" max="255">
+        <div id="createServer" style="margin-top: 10px;">
+            <div id="name">
+                <label style="font-size: 10px;">IP ADDRESS:</label>
+                <div style="display: flex; align-items: center;">
+                    <input type="number" id="name_part_1" min="0" max="255">.<input type="number" id="name_part_2" min="0"
+                        max="255">.<input type="number" id="name_part_3" min="0" max="255">.<input type="number"
+                        id="name_part_4" min="0" max="255">
+                </div>
             </div>
             <ul id="urlList" style="display: none;"></ul>
         </div>
-        <div id="createLinkLabels" style="display: none;">
-            <label for="betweenoption" style="display: block; font-weight: bold;">Between</label>
+        <div id="createLinkLabels" style="display: none; margin-top: 10px;">
+            <label for="betweenoption" style="display: block; font-size: 12px;">Between:</label>
             <select id="betweenoption" style="display: block; width: 100%;"></select>
-            <label for="andoption" style="display: block; font-weight: bold;">and:</label>
+            <label for="andoption" style="display: block; font-size: 12px;">and:</label>
             <select id="andoption" style="display: block; width: 100%;"></select>
-            <label for="time" style="display: block; font-weight: bold;">weight:</label>
+            <label for="time" style="display: block; font-size: 12px;">weight:</label>
             <input type="number" id="time" min=0 placeholder="duration ms" style="display: block; width: 100%;">
         </div>
 
@@ -68,17 +72,19 @@
         <h2 id="browserTitle">Browser</h2>
         <div style="display: flex; flex-direction: row; justify-content: stretch; gap: 5px; width: 100%;">
             <input type="text" id="url" placeholder="Enter the url..." style="width: 80%;">
-            <button type="button" id="navigate" style="padding: 10px; color: white; font-weight: bold; cursor: pointer; background-color: rgb(71, 68, 71);">Navigate</button>
+            <button type="button" id="navigate">Navigate</button>
         </div>
         <div id="content"></div>
         <button type="button" id="exit">Exit</button>
     </div>
     <div id="newappform" style="display: none;">
-        <h2 style="text-align: center; font-size: 16px;">Create new application</h2>
+        <h2 style="text-align: center; font-size: 14px;">Create new application</h2>
         <input type="url" placeholder="Enter URL..." id="urlnewapp">
         <textarea rows="10" placeholder="Write an HTML code..." id="urlcontent"></textarea>
-        <button type="button" style="display: block;" id="urlsavebutton">Save</button>
-        <button type="button" style="display: block;" id="urlexitbutton">Exit</button>
+        <div style="display: flex; gap: 5px;">
+            <button type="button" style="display: block;" id="urlsavebutton">Save</button>
+            <button type="button" style="display: block;" id="urlexitbutton">Exit</button>
+        </div>
     </div>
     <script src="modules/konva.js"></script>
     <script src="modules/jsPDF.js"></script>

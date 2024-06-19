@@ -35,7 +35,12 @@ document.getElementById('navigate').addEventListener('click', () => {
                   layer.batchDraw();
               }
               var id_list = result.map(r => r.id);
-              result[0].socket.emit('request', id_list, result[0].id, result[1].id, url);
+              if (result.length > 1) {
+                result[0].socket.emit('request', id_list, result[0].id, result[1].id, url);
+              }
+              else {
+                document.getElementById('content').innerHTML = result[0].getContent(url);
+              }
           }
       }
       else {

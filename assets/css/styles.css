@@ -35,6 +35,7 @@ body {
     padding: 40px;
     border-left: solid 1px #007bff;
     overflow-x: hidden;
+    background-color: white;
 }
 
 /* Heading Styling */
@@ -44,7 +45,9 @@ h2 {
 }
 
 /* Input Fields Styling */
-#newServerForm input, #newappform input, #newappform textarea, 
+#newServerForm input,
+#newappform input,
+#newappform textarea,
 #newServerForm select {
     display: block;
     width: 100%;
@@ -64,7 +67,8 @@ h2 {
 }
 
 /* Button Styling */
-#newServerForm button, #newappform button {
+#newServerForm button,
+#newappform button {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -83,7 +87,8 @@ h2 {
     border: solid 2px red;
 }
 
-#newServerForm button:hover, #newappform button:hover {
+#newServerForm button:hover,
+#newappform button:hover {
     background-color: #0056b3;
     color: white;
 }
@@ -91,6 +96,17 @@ h2 {
 #newServerForm #cancel:hover {
     background-color: red;
     color: white;
+}
+
+#newappform #urlexitbutton {
+    color: red;
+    border-color: red;
+    background-color: white;
+}
+
+#newappform #urlexitbutton:hover {
+    color: white;
+    background-color: red;
 }
 
 /* URL List Styling */
@@ -103,7 +119,7 @@ h2 {
 #newServerForm #urlList li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 #newServerForm #urlList li:last-child {
@@ -122,7 +138,9 @@ h2 {
 }
 
 /* Browser and Server menu Styles */
-#browser, #serverMenu, #newappform {
+#browser,
+#serverMenu,
+#newappform {
     flex-direction: column;
     justify-content: center;
     position: absolute;
@@ -137,31 +155,55 @@ h2 {
     overflow-x: hidden;
 }
 
-
+#browser {
+    gap: 5px;
+}
 
 #browser #content {
-    border: black 0.5px solid;
     height: 100px;
-    background-color: white;
+    font-size: 10px;
+    background-color: rgba(241, 236, 236, 0.326);
     padding: 5px;
 }
 
 #browser h2 {
     text-align: center;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 #exit {
     width: 100%;
-    padding: 10px;
-    color: #fff;
-    border: none;
-    background-color: #007bff;
+    padding: 5px;
+    color: red;
+    border: solid 1px red;
+    background-color: white;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.5s ease;
+    font-size: 10px;
+    transition: background-color color 0.5s ease;
+}
+
+#exit:hover {
+    background-color: red;
+    color: white;
+}
+
+#navigate {
+    padding: 10px;
+    color: #0056b3;
+    border: solid 1px #0056b3;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
+    font-size: 10px;
+    border-radius: 4px;
+    transition: background-color color 0.5s ease;
+}
+
+#navigate:hover {
+    color: white;
+    background-color: #0056b3;
 }
 
 #serverMenu button {

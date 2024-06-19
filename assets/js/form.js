@@ -16,6 +16,7 @@ addServerButton.addEventListener('click', function (e) {
     saveButton.style.width = '100%';
     newServerForm.style.display = 'flex';
     document.getElementById('createServer').style.display = 'block';
+    document.getElementById('name').style.display = 'block';
     document.getElementById('createLinkLabels').style.display = 'none';
     document.getElementById("name_part_1").readOnly = false;
     document.getElementById("name_part_2").readOnly = false;
